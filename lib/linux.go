@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-func ExecShellLinuxE(cmd string) (string, error)  {
+func ExecShellLinuxE(cmd string) (string, error) {
 	ret := exec.Command("/bin/bash", "-c", cmd)
 	var out bytes.Buffer
 	ret.Stdout = &out
@@ -14,15 +14,15 @@ func ExecShellLinuxE(cmd string) (string, error)  {
 }
 
 type CpuInfo struct {
-	Model string
-	Count int
+	Model     string
+	Count     int
 	CoreCount int
-	Stepping string
+	Stepping  string
 }
 
-func GetCpuInfo(e CpuInfo){
+func (e CpuInfo) GetCpuInfo() {
 	tmpStr, err := ExecShellLinux("cat /proc/cpuinfo")
-	if err != nil{
+	if err != nil {
 	}
 	e.Model = SearchSplitStringColumnFirst(tmpStr, ".*model name.*", ":", 2)
 	e.Stepping = SearchSplitStringColumnFirst(tmpStr, ".*stepping.*", ":", 2)
