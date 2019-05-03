@@ -2,6 +2,7 @@ package lib
 
 import (
 	"bytes"
+	"fmt"
 	"os/exec"
 )
 
@@ -20,9 +21,10 @@ type CpuInfo struct {
 	Stepping  string
 }
 
-func (e CpuInfo) GetCpuInfo() {
+func (e *CpuInfo) GetCpuInfo() {
 	tmpStr, err := ExecShellLinux("cat /proc/cpuinfo")
 	if err != nil {
+		fmt.Println(err)
 	}
 	e.Model = SearchSplitStringColumnFirst(tmpStr, ".*model name.*", ":", 2)
 	e.Stepping = SearchSplitStringColumnFirst(tmpStr, ".*stepping.*", ":", 2)
@@ -32,4 +34,22 @@ func (e CpuInfo) GetCpuInfo() {
 	coreCountTmp1 := SearchString(tmpStr, ".*core id.*")
 	coreCountTmp := UniqStringList(coreCountTmp1)
 	e.CoreCount = len(coreCountTmp)
+}
+
+type MotherboradInfo struct {
+	Model    string
+	BiosVer  string
+	BiosDate string
+	BmcVer   string
+	BmcDate  string
+}
+
+func (e *MotherboradInfo) GetMbInfo() {
+	tmpStr, err := ExecShellLinux("dmidecode")
+	if err != nil {
+		fmt.Println(err)
+	}
+	e.Model = SearchSplitStringColumnFirst(tmpStr, ".*Product Name.*", ":", 2)
+	e.BiosVer = SearchSplitStringColumnFirst(tmpStr, ".*Version.*", ":", 2)
+	e.BiosDate = SearchSplitStringColumnFirst(tmpStr, ".*Release Date.*", ":", 2)
 }

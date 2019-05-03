@@ -9,11 +9,11 @@ import (
 	"strings"
 )
 
-func Test()  {
+func Test() {
 	fmt.Println("I am test.")
 }
 
-func ExecShellLinux(cmd string) (string, error)  {
+func ExecShellLinux(cmd string) (string, error) {
 	ret := exec.Command("/bin/bash", "-c", cmd)
 	var out bytes.Buffer
 	ret.Stdout = &out
@@ -21,7 +21,7 @@ func ExecShellLinux(cmd string) (string, error)  {
 	return out.String(), err
 }
 
-func ExecShellWin(cmd string) (string, error)  {
+func ExecShellWin(cmd string) (string, error) {
 	ret := exec.Command("cmd", "/C", cmd)
 	var out bytes.Buffer
 	ret.Stdout = &out
@@ -31,7 +31,6 @@ func ExecShellWin(cmd string) (string, error)  {
 
 func Trim(srcStr string, trimStr string) string {
 	regStrTmp := fmt.Sprintf("^%[1]s*|%[1]s*$", trimStr)
-	fmt.Println(regStrTmp)
 	re := regexp.MustCompile(regStrTmp)
 	ret := re.ReplaceAllString(srcStr, "")
 	return ret
@@ -43,7 +42,7 @@ func SearchString(srcStr string, regStr string) []string {
 	return re.FindAllString(srcStr, -1)
 }
 
-func SplitString(srcStr string, splitStr string) []string  {
+func SplitString(srcStr string, splitStr string) []string {
 	ret := strings.Split(srcStr, splitStr)
 	return ret
 }
@@ -51,7 +50,7 @@ func SplitString(srcStr string, splitStr string) []string  {
 func SearchSplitString(srcStr string, regStr string, splitStr string) [][]string {
 	re := SearchString(srcStr, regStr)
 	var ret [][]string
-	for _, v := range re{
+	for _, v := range re {
 		v_re := SplitString(v, splitStr)
 		ret = append(ret, v_re)
 	}
@@ -61,8 +60,8 @@ func SearchSplitString(srcStr string, regStr string, splitStr string) [][]string
 func SearchSplitStringColumn(srcStr string, regStr string, splitStr string, col int) []string {
 	tmp := SearchSplitString(srcStr, regStr, splitStr)
 	var ret []string
-	for _, v := range tmp{
-		ret = append(ret, Trim(v[col - 1], " "))
+	for _, v := range tmp {
+		ret = append(ret, Trim(v[col-1], " "))
 	}
 	return ret
 }
@@ -73,14 +72,14 @@ func SearchStringFirst(srcStr string, regStr string) string {
 	findStr := re.FindAllString(srcStr, -1)
 	if findStr != nil {
 		return findStr[0]
-	}else {
+	} else {
 		return "nil"
 	}
 }
 
 func SearchSplitStringFirst(srcStr string, regStr string, splitStr string) []string {
 	re := SearchStringFirst(srcStr, regStr)
-	if re == "nil"{
+	if re == "nil" {
 		return nil
 	}
 	var ret []string
@@ -90,11 +89,13 @@ func SearchSplitStringFirst(srcStr string, regStr string, splitStr string) []str
 
 func SearchSplitStringColumnFirst(srcStr string, regStr string, splitStr string, col int) string {
 	tmp := SearchSplitStringFirst(srcStr, regStr, splitStr)
-	if tmp == nil{return "nil"}
-	return Trim(tmp[0], " ")
+	if tmp == nil {
+		return "nil"
+	}
+	return Trim(tmp[col-1], " ")
 }
 
-func UniqStringList(strList []string) []string  {
+func UniqStringList(strList []string) []string {
 	newArr := make([]string, 0)
 	sort.Strings(strList)
 	for i := 0; i < len(strList); i++ {
