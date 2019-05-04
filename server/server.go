@@ -3,24 +3,21 @@ package server
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"iads/server/api/v1.0"
 	"net/http"
+	"time"
 )
 
 func ServerStart() {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
-	router.GET("/test", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"app": "iads",
-			"ver": "1.0.0",
-		})
-	})
+	router.GET("/test", v1_0.Test)
 
 	ser := &http.Server{
-		Addr:           fmt.Sprintf(":%d", 8080),
+		Addr:           fmt.Sprintf(":%d", 80),
 		Handler:        router,
-		ReadTimeout:    60,
-		WriteTimeout:   60,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
 	_ = ser.ListenAndServe()
