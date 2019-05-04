@@ -16,6 +16,7 @@
         <method importPath="github.com/pkg/sftp" receiver="*Client" name="Close" />
         <method importPath="github.com/pkg/sftp" receiver="*File" name="Close" />
         <method importPath="os" receiver="*File" name="Close" />
+        <method importPath="net/http" receiver="*Server" name="Close" />
       </methods>
     </inspection_tool>
   </profile>
