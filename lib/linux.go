@@ -3,7 +3,9 @@ package lib
 import (
 	"bytes"
 	"fmt"
+	"io/ioutil"
 	"os/exec"
+	"strings"
 )
 
 type LogErrMsgStruct struct {
@@ -28,7 +30,9 @@ type CpuInfo struct {
 }
 
 func (e *CpuInfo) GetCpuInfo() {
-	tmpStr, err := ExecShellLinux("cat /proc/cpuinfo")
+	//tmpStr, err := ExecShellLinux("cat /proc/cpuinfo")
+	tmp, err := ioutil.ReadFile("/proc/cpuinfo")
+	tmpStr := strings.Replace(string(tmp), "\n", "", 1)
 	if err != nil {
 		fmt.Println(err)
 	}
