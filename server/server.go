@@ -5,10 +5,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"iads/server/api/v1.0"
 	"net/http"
+	"runtime"
 	"time"
 )
 
 func ServerStart() {
+	runtime.GOMAXPROCS(2)
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	router.GET("/test", v1_0.Test)

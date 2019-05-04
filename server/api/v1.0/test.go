@@ -10,7 +10,7 @@ import (
 func Test(c *gin.Context) {
 	cpu := lib.CpuInfo{}
 	cpu.GetCpuInfo()
-	jsons, errs := json.Marshal(cpu)
+	jsons, errs := json.MarshalIndent(cpu, "", "  ")
 	if errs != nil {
 	}
 	c.String(http.StatusOK, string(jsons))
