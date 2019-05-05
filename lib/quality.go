@@ -1,13 +1,16 @@
 package lib
 
 import (
+	"bufio"
+	"fmt"
 	"github.com/emirpasic/gods/lists/arraylist"
 	"log"
 	"os"
+	"regexp"
 )
 
-type LogErrMsgStruct struct {
-	id       int
+type ErrMsgStruct struct {
+	Id       int
 	ErrMsg   string
 	ErrSolve string
 }
@@ -25,20 +28,68 @@ func InitEnv() {
 	//添加日志文件路径
 	logFiles.Add("/var/log/messages", "/var/log/mcelog", "/var/log/kerl", "/var/log/syslog")
 	errMsgs.Add("error", "failed")
+}
 
-	fp, err = os.Create("testlog.txt")
+func StartTest() {
+	logger.Println("Start testing......")
+	fp, err = os.OpenFile("testlog.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
 	if err != nil {
 		log.Fatal("create logfile failed.")
 	}
 	logger = log.New(fp, "", log.LstdFlags|log.Llongfile)
 }
 
-func Start() {
-	logger.Println("Start testing......")
-}
-
-func Stop() {
+func StopTest() {
 	logger.Println("test stopped.")
 	_ = fp.Sync()
 	fp.Close()
+}
+
+/********************* logfile **********************/
+type RowLog struct {
+	Index int64
+	Data  string
+}
+
+func NewRowLog() *RowLog {
+	return &RowLog{
+		Index: -1,
+		Data:  "",
+	}
+}
+
+func Analysis(filename string) arraylist.List {
+	it := errMsgs.Iterator()
+	regStr := ""
+	for it.Next() {
+		if regStr == "" {
+			regStr += it.Value().(string)
+		} else {
+			regStr = regStr + "|" + it.Value().(string)
+		}
+	}
+	arr := arraylist.List{}
+	file, err := os.Open(filename)
+	if err != nil {
+		errStr := fmt.Sprintf("Open file %s failed.", filename)
+		logger.Println(errStr)
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	var index int64 = 1
+	for scanner.Scan() {
+		nowRowStr := scanner.Text()
+		tmp, err := regexp.Match(regStr, []byte(nowRowStr))
+		if err != nil {
+			logger.Println("regex log file error.")
+		}
+		if true == tmp {
+			tmpRow := NewRowLog()
+			tmpRow.Index = index
+			tmpRow.Data = nowRowStr
+			arr.Add(tmpRow)
+		}
+		index++
+	}
+	return arr
 }
