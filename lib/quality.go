@@ -61,6 +61,10 @@ func NewRowLog() *RowLog {
 }
 
 func Analysis(filename string) arraylist.List {
+	defer func() {
+		if err := recover(); err != nil {
+		}
+	}()
 	it := errMsgs.Iterator()
 	regStr := ""
 	for it.Next() {
@@ -74,7 +78,7 @@ func Analysis(filename string) arraylist.List {
 	file, err := os.Open(filename)
 	if err != nil {
 		errStr := fmt.Sprintf("Open file %s failed.", filename)
-		logger.Println(errStr)
+		logger.Panicln(errStr)
 	}
 	defer file.Close()
 	scanner := bufio.NewScanner(file)

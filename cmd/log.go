@@ -21,6 +21,7 @@ var errCmd = &cobra.Command{
 	Short: "print err log",
 	Run: func(cmd *cobra.Command, args []string) {
 		lib.InitEnv()
+
 		arr := lib.Analysis("/var/log/messages")
 		fmt.Println("/var/log/messages")
 		if 0 == arr.Size() {
