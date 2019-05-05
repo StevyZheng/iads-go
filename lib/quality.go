@@ -2,7 +2,6 @@ package lib
 
 import (
 	"bufio"
-	"fmt"
 	"github.com/emirpasic/gods/lists/arraylist"
 	"log"
 	"os"
@@ -60,11 +59,7 @@ func NewRowLog() *RowLog {
 	}
 }
 
-func Analysis(filename string) arraylist.List {
-	defer func() {
-		if err := recover(); err != nil {
-		}
-	}()
+func Analysis(filename string) (arraylist.List, error) {
 	it := errMsgs.Iterator()
 	regStr := ""
 	for it.Next() {
@@ -77,8 +72,7 @@ func Analysis(filename string) arraylist.List {
 	arr := arraylist.List{}
 	file, err := os.Open(filename)
 	if err != nil {
-		errStr := fmt.Sprintf("Open file %s failed.", filename)
-		logger.Panicln(errStr)
+		return arr, err
 	}
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
@@ -97,5 +91,5 @@ func Analysis(filename string) arraylist.List {
 		}
 		index++
 	}
-	return arr
+	return arr, err
 }

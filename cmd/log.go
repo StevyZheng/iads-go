@@ -21,33 +21,38 @@ var errCmd = &cobra.Command{
 	Short: "print err log",
 	Run: func(cmd *cobra.Command, args []string) {
 		lib.InitEnv()
-
-		arr := lib.Analysis("/var/log/messages")
-		fmt.Println("/var/log/messages")
-		if 0 == arr.Size() {
-			fmt.Println("No errors.")
+		arr, err := lib.Analysis("/var/log/messages")
+		if err != nil {
+			fmt.Println("/var/log/messages open filed.")
 		} else {
-			it := arr.Iterator()
-			for it.Next() {
-				tRow := it.Value().(*lib.RowLog)
-				tStr := fmt.Sprintf("%d %s", tRow.Index, tRow.Data)
-				fmt.Println(tStr)
+			fmt.Println("/var/log/messages")
+			if 0 == arr.Size() {
+				fmt.Println("No errors.")
+			} else {
+				it := arr.Iterator()
+				for it.Next() {
+					tRow := it.Value().(*lib.RowLog)
+					tStr := fmt.Sprintf("%d %s", tRow.Index, tRow.Data)
+					fmt.Println(tStr)
+				}
 			}
 		}
 
-		arr.Clear()
-		arr = lib.Analysis("/var/log/mcelog")
-		fmt.Println("/var/log/mcelog")
-		if 0 == arr.Size() {
-			fmt.Println("No errors.")
+		arr, err = lib.Analysis("/var/log/mcelog")
+		if err != nil {
+			fmt.Println("/var/log/mcelog open filed.")
 		} else {
-			it := arr.Iterator()
-			for it.Next() {
-				tRow := it.Value().(*lib.RowLog)
-				tStr := fmt.Sprintf("%d %s", tRow.Index, tRow.Data)
-				fmt.Println(tStr)
+			fmt.Println("/var/log/mcelog")
+			if 0 == arr.Size() {
+				fmt.Println("No errors.")
+			} else {
+				it := arr.Iterator()
+				for it.Next() {
+					tRow := it.Value().(*lib.RowLog)
+					tStr := fmt.Sprintf("%d %s", tRow.Index, tRow.Data)
+					fmt.Println(tStr)
+				}
 			}
 		}
-
 	},
 }
