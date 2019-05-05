@@ -21,12 +21,32 @@ var errCmd = &cobra.Command{
 	Short: "print err log",
 	Run: func(cmd *cobra.Command, args []string) {
 		lib.InitEnv()
-		arr := lib.Analysis("haha.txt")
-		it := arr.Iterator()
-		for it.Next() {
-			tRow := it.Value().(*lib.RowLog)
-			tStr := fmt.Sprintf("%d %s", tRow.Index, tRow.Data)
-			fmt.Println(tStr)
+		arr := lib.Analysis("/var/log/messages")
+		fmt.Println("/var/log/messages")
+		if 0 == arr.Size() {
+			fmt.Println("No errors.")
+		} else {
+			it := arr.Iterator()
+			for it.Next() {
+				tRow := it.Value().(*lib.RowLog)
+				tStr := fmt.Sprintf("%d %s", tRow.Index, tRow.Data)
+				fmt.Println(tStr)
+			}
 		}
+
+		arr.Clear()
+		arr = lib.Analysis("/var/log/mcelog")
+		fmt.Println("/var/log/mcelog")
+		if 0 == arr.Size() {
+			fmt.Println("No errors.")
+		} else {
+			it := arr.Iterator()
+			for it.Next() {
+				tRow := it.Value().(*lib.RowLog)
+				tStr := fmt.Sprintf("%d %s", tRow.Index, tRow.Data)
+				fmt.Println(tStr)
+			}
+		}
+
 	},
 }

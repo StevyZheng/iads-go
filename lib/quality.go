@@ -26,6 +26,8 @@ var (
 
 func InitEnv() {
 	//添加日志文件路径
+	logFiles.Clear()
+	errMsgs.Clear()
 	logFiles.Add("/var/log/messages", "/var/log/mcelog", "/var/log/kerl", "/var/log/syslog")
 	errMsgs.Add("error", "failed")
 }
