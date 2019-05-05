@@ -1,11 +1,9 @@
 package cmd
 
 import (
-	"github.com/olekukonko/tablewriter"
+	"fmt"
 	"github.com/spf13/cobra"
 	"iads/lib"
-	"os"
-	"strconv"
 )
 
 func init() {
@@ -24,22 +22,11 @@ var errCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		lib.InitEnv()
 		arr := lib.Analysis("haha.txt")
-		arrLen := arr.Size()
-		var data [][]string
 		it := arr.Iterator()
 		for it.Next() {
-			row := make([]string, 2, 2)
-			row[0] = strconv.FormatInt(it.Value().(*lib.RowLog).Index, 10)
-			row[1] = it.Value().(*lib.RowLog).Data
-			data = append(data, row)
+			tRow := it.Value().(*lib.RowLog)
+			tStr := fmt.Sprintf("%d %s", tRow.Index, tRow.Data)
+			fmt.Println(tStr)
 		}
-		table := tablewriter.NewWriter(os.Stdout)
-		table.SetHeader([]string{"index", "errMsg"})
-		table.SetRowLine(true)
-		table.SetFooter([]string{"Total", strconv.Itoa(arrLen)})
-		for _, v := range data {
-			table.Append(v)
-		}
-		table.Render()
 	},
 }
