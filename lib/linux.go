@@ -8,12 +8,6 @@ import (
 	"strings"
 )
 
-type LogErrMsgStruct struct {
-	id       int
-	ErrMsg   string
-	ErrSolve string
-}
-
 func ExecShellLinuxE(cmd string) (string, error) {
 	ret := exec.Command("/bin/bash", "-c", cmd)
 	var out bytes.Buffer
