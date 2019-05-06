@@ -61,9 +61,9 @@ func NewRowLog() *RowLog {
 
 func Analysis(filename string) (arraylist.List, error) {
 	it := errMsgs.Iterator()
-	regStr := ""
+	regStr := "(?i)"
 	for it.Next() {
-		if regStr == "" {
+		if regStr == "(?i)" {
 			regStr += it.Value().(string)
 		} else {
 			regStr = regStr + "|" + it.Value().(string)

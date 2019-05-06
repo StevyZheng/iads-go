@@ -3,6 +3,7 @@ package lib
 import (
 	"bytes"
 	"fmt"
+	"github.com/mholt/archiver"
 	"io/ioutil"
 	"os/exec"
 	"strings"
@@ -56,4 +57,27 @@ func (e *MotherboradInfo) GetMbInfo() {
 	e.Model = SearchSplitStringColumnFirst(tmpStr, ".*Product Name.*", ":", 2)
 	e.BiosVer = SearchSplitStringColumnFirst(tmpStr, ".*Version.*", ":", 2)
 	e.BiosDate = SearchSplitStringColumnFirst(tmpStr, ".*Release Date.*", ":", 2)
+}
+
+func ZipFiles(fileArr []string, tgzName string) error {
+	zip := archiver.Zip{
+		CompressionLevel:       9,
+		MkdirAll:               true,
+		SelectiveCompression:   false,
+		ContinueOnError:        false,
+		OverwriteExisting:      false,
+		ImplicitTopLevelFolder: false,
+	}
+	err := zip.Archive(fileArr, tgzName)
+	return err
+}
+
+func ZipPath(path string, zipName string) error {
+	err := ZipFiles([]string{path}, zipName)
+	return err
+}
+
+func UnZip(zipName string, pathName string) error {
+	err := archiver.Unarchive(zipName, pathName)
+	return err
 }
