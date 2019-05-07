@@ -1,4 +1,4 @@
-package v1_0
+package api_v1_0
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func Test(c *gin.Context) {
+func CpuInfo(c *gin.Context) {
 	cpu := lib.CpuInfo{}
 	cpu.GetCpuInfo()
 	jsons, errs := json.MarshalIndent(cpu, "", "  ")

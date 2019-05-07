@@ -11,7 +11,7 @@ func init() {
 
 var serverCmd = &cobra.Command{
 	Use:   "server",
-	Short: "restful api server",
+	Short: "restful api_v1_0 server",
 	Run: func(cmd *cobra.Command, args []string) {
 		server.ServerStart()
 	},

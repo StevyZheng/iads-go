@@ -17,6 +17,8 @@
         <method importPath="github.com/pkg/sftp" receiver="*File" name="Close" />
         <method importPath="os" receiver="*File" name="Close" />
         <method importPath="net/http" receiver="*Server" name="Close" />
+        <method importPath="golang.org/x/crypto/ssh" receiver="Client" name="Close" />
+        <method importPath="golang.org/x/crypto/ssh" receiver="*Session" name="Close" />
       </methods>
     </inspection_tool>
   </profile>
