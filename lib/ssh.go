@@ -18,7 +18,7 @@ type Ssh struct {
 	Username   string
 	Password   string
 	Host       string
-	Port       string
+	Port       int
 	session    *ssh.Session
 	sftpClient *sftp.Client
 }
@@ -28,7 +28,7 @@ func NewSsh(host string, username string, password string) *Ssh {
 	ret.Host = host
 	ret.Username = username
 	ret.Password = password
-	ret.Port = "22"
+	ret.Port = 22
 	ret.session = nil
 	ret.sftpClient = nil
 	return ret
@@ -61,7 +61,6 @@ func (e *Ssh) execCommand(cmd string) (string, string, error) {
 	if err := e.SshConnect(); err != nil {
 		log.Fatal(err)
 	}
-	defer e.session.Close()
 	var outbt, errbt bytes.Buffer
 	e.session.Stdout = &outbt
 	e.session.Stderr = &errbt
@@ -79,7 +78,6 @@ func (e *Ssh) execCommandList(cmdList arraylist.List) (arraylist.List, arraylist
 		outList arraylist.List
 		errList arraylist.List
 	)
-	defer e.session.Close()
 	var outbt, errbt bytes.Buffer
 	e.session.Stdout = &outbt
 	e.session.Stderr = &errbt
@@ -93,12 +91,16 @@ func (e *Ssh) execCommandList(cmdList arraylist.List) (arraylist.List, arraylist
 	return outList, errList, err
 }
 
+func (e *Ssh) CloseSession() {
+	e.session.Close()
+}
+
 func (e *Ssh) CloseSftp() {
 	e.sftpClient.Close()
 }
 
 func (e *Ssh) SetPort(port int) {
-	e.Port = string(port)
+	e.Port = port
 }
 
 func (e *Ssh) SftpConnect() error {
