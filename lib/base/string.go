@@ -1,33 +1,11 @@
-package lib
+package base
 
 import (
-	"bytes"
 	"fmt"
-	"os/exec"
 	"regexp"
 	"sort"
 	"strings"
 )
-
-func Test() {
-	fmt.Println("I am test.")
-}
-
-func ExecShellLinux(cmd string) (string, error) {
-	ret := exec.Command("/bin/bash", "-c", cmd)
-	var out bytes.Buffer
-	ret.Stdout = &out
-	err := ret.Run()
-	return out.String(), err
-}
-
-func ExecShellWin(cmd string) (string, error) {
-	ret := exec.Command("cmd", "/C", cmd)
-	var out bytes.Buffer
-	ret.Stdout = &out
-	err := ret.Run()
-	return out.String(), err
-}
 
 func Trim(srcStr string, trimStr string) string {
 	regStrTmp := fmt.Sprintf("^%[1]s*|%[1]s*$", trimStr)

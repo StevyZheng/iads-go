@@ -1,4 +1,4 @@
-package lib
+package base
 
 import (
 	"bytes"
@@ -59,7 +59,8 @@ func (e *Ssh) SshConnect() error {
 }
 
 func (e *Ssh) ExecCommand(cmd string) (string, string, error) {
-	if err := e.SshConnect(); err != nil {
+	var err error
+	if err = e.SshConnect(); err != nil {
 		log.Fatal(err)
 	}
 	var outbt, errbt bytes.Buffer
@@ -72,7 +73,8 @@ func (e *Ssh) ExecCommand(cmd string) (string, string, error) {
 }
 
 func (e *Ssh) ExecCommandList(cmdList arraylist.List) (arraylist.List, arraylist.List, error) {
-	if err := e.SshConnect(); err != nil {
+	var err error
+	if err = e.SshConnect(); err != nil {
 		log.Fatal(err)
 	}
 	var (
@@ -110,6 +112,7 @@ func (e *Ssh) SftpConnect() error {
 		addr         string
 		clientConfig *ssh.ClientConfig
 		sshClient    *ssh.Client
+		err          error
 	)
 	auth = make([]ssh.AuthMethod, 0)
 	auth = append(auth, ssh.Password(e.Password))
@@ -131,6 +134,7 @@ func (e *Ssh) SftpConnect() error {
 }
 
 func (e *Ssh) DownloadFile(remoteFile string, localFile string) error {
+	var err error
 	if nil != e.sftpClient {
 		srcFile, err := e.sftpClient.Open(remoteFile)
 		if err != nil {
@@ -157,10 +161,11 @@ func (e *Ssh) DownloadFile(remoteFile string, localFile string) error {
 }
 
 func (e *Ssh) UploadFile(localFile string, remoteFile string) error {
+	var err error
 	if e.sftpClient != nil {
 		srcFile, err := os.Open(localFile)
 		if err != nil {
-			log.Fatal(err)
+			log.Fatal("Fatal:", err)
 		}
 		defer srcFile.Close()
 		dstFile, err := e.sftpClient.Create(remoteFile)
@@ -169,11 +174,15 @@ func (e *Ssh) UploadFile(localFile string, remoteFile string) error {
 		}
 		defer dstFile.Close()
 		srcinfo, err := srcFile.Stat()
-		srcSize := srcinfo.Size()
-		nByte, err := io.Copy(dstFile, srcFile)
-		if srcSize != nByte {
-			fmt.Println("srcSize != nByte update file failed.")
-			return err
+		if srcinfo == nil {
+			log.Fatal("get file size failed.")
+		} else {
+			srcSize := srcinfo.Size()
+			nByte, err := io.Copy(dstFile, srcFile)
+			if srcSize != nByte {
+				fmt.Println("srcSize != nByte update file failed.")
+				return err
+			}
 		}
 		/*if err != nil{ log.Fatal(err)}
 		if n != size{}
@@ -198,6 +207,7 @@ func (e *Ssh) UploadFile(localFile string, remoteFile string) error {
 }
 
 func (e *Ssh) UploadDir(localDir string, remoteDir string) error {
+	var err error
 	if e.sftpClient != nil {
 		localFiles, err := ioutil.ReadDir(localDir)
 		if err != nil {
@@ -225,6 +235,7 @@ func (e *Ssh) UploadDir(localDir string, remoteDir string) error {
 }
 
 func (e *Ssh) DownloadDir(remoteDir string, localDir string) error {
+	var err error
 	if e.sftpClient != nil {
 		remoteFiles, err := e.sftpClient.ReadDir(remoteDir)
 		if err != nil {

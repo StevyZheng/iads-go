@@ -1,4 +1,4 @@
-package lib
+package base
 
 import (
 	"github.com/chfenger/goNum"
@@ -32,7 +32,7 @@ func les_ECPE(a [][]float64, b []float64) ([]float64, bool) {
 
 	//求解
 	//消去，求得上三角矩阵
-	for true{
+	for true {
 		for i := 0; i < n-1; i++ {
 			//求第i列的主元素并调整顺序
 			acol := make([]float64, n-i)
@@ -74,22 +74,23 @@ func les_ECPE(a [][]float64, b []float64) ([]float64, bool) {
 	return sol, err
 }
 
-func Gaos() (err bool)  {
+func Gaos() (err bool) {
 	const M = 1000
 	const N = 1000
-	var(
+	var (
 		ma [][]float64
 		mb []float64
 	)
-	for i := 0; i < M; i++  {
+	for i := 0; i < M; i++ {
 		tmp := make([]float64, N)
-		for j := 0; j < N; j++{
+		for j := 0; j < N; j++ {
 			tmp = append(tmp, rand.Float64())
 		}
 		ma = append(ma, tmp)
 		mb = append(mb, rand.Float64())
 	}
 	mx, err := les_ECPE(ma, mb)
-	if mx != nil{}
+	if mx != nil {
+	}
 	return err
 }

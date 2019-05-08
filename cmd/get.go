@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
-	"iads/lib"
+	"iads/lib/linux"
 )
 
 func init() {
@@ -21,7 +21,7 @@ var getCpuInfoCmd = &cobra.Command{
 	Use:   "cpuinfo",
 	Short: "Print the cpu info",
 	Run: func(cmd *cobra.Command, args []string) {
-		cpuinfo := new(lib.CpuInfo)
+		cpuinfo := new(linux.CpuInfo)
 		cpuinfo.GetCpuInfo()
 		fmt.Println("model:", cpuinfo.Model)
 		fmt.Println("sockets:", cpuinfo.Count)
@@ -34,7 +34,7 @@ var getMbInfoCmd = &cobra.Command{
 	Use:   "mbinfo",
 	Short: "Print the motherborad info",
 	Run: func(cmd *cobra.Command, args []string) {
-		mbinfo := new(lib.MotherboradInfo)
+		mbinfo := new(linux.MotherboradInfo)
 		mbinfo.GetMbInfo()
 		fmt.Println("model:", mbinfo.Model)
 		fmt.Println("biosVer:", mbinfo.BiosVer)
