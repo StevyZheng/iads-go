@@ -21,8 +21,8 @@ var getCpuInfoCmd = &cobra.Command{
 	Use:   "cpuinfo",
 	Short: "Print the cpu info",
 	Run: func(cmd *cobra.Command, args []string) {
-		cpuinfo := new(linux.CpuInfo)
-		cpuinfo.GetCpuInfo()
+		cpuinfo := new(linux.CpuHwInfo)
+		cpuinfo.GetCpuHwInfo()
 		fmt.Println("model:", cpuinfo.Model)
 		fmt.Println("sockets:", cpuinfo.Count)
 		fmt.Println("cores:", cpuinfo.CoreCount)

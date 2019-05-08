@@ -8,8 +8,8 @@ import (
 )
 
 func CpuInfo(c *gin.Context) {
-	cpu := linux.CpuInfo{}
-	cpu.GetCpuInfo()
+	cpu := linux.CpuHwInfo{}
+	cpu.GetCpuHwInfo()
 	jsons, errs := json.MarshalIndent(cpu, "", "  ")
 	if errs != nil {
 	}

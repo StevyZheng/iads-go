@@ -4,6 +4,7 @@ go 1.12
 
 require (
 	github.com/chfenger/goNum v0.0.0-20190320001814-cd9918d5b465
+	github.com/dselans/dmidecode v0.0.0-20180814053009-65c3f9d81910
 	github.com/dsnet/compress v0.0.1 // indirect
 	github.com/emirpasic/gods v1.12.0
 	github.com/gin-contrib/sse v0.0.0-20190301062529-5545eab6dad3 // indirect
