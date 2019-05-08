@@ -21,7 +21,7 @@ var errCmd = &cobra.Command{
 	Short: "print err log",
 	Run: func(cmd *cobra.Command, args []string) {
 		lib.InitEnv()
-		arr, err := lib.Analysis("/var/log/messages")
+		arr, err := lib.AnalysisLogFile("/var/log/messages")
 		if err != nil {
 			fmt.Println("/var/log/messages open filed.")
 		} else {
@@ -38,7 +38,7 @@ var errCmd = &cobra.Command{
 			}
 		}
 
-		arr, err = lib.Analysis("/var/log/mcelog")
+		arr, err = lib.AnalysisLogFile("/var/log/mcelog")
 		if err != nil {
 			fmt.Println("/var/log/mcelog open filed.")
 		} else {

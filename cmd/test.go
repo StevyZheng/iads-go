@@ -8,6 +8,7 @@ import (
 func init() {
 	rootCmd.AddCommand(testCmd)
 	testCmd.AddCommand(commonCmd)
+	testCmd.AddCommand(runCmd)
 }
 
 var testCmd = &cobra.Command{
@@ -17,11 +18,19 @@ var testCmd = &cobra.Command{
 
 var commonCmd = &cobra.Command{
 	Use:   "common",
-	Short: "run roycom common server test",
+	Short: "test",
 	Run: func(cmd *cobra.Command, args []string) {
 		ssh := base.NewSsh("www.roycom.com.cn", "root", "roycom000000")
 		_ = ssh.SftpConnect()
 		_ = ssh.UploadFile("frp_0.27.0_windows_amd64.zip", "/root/kb.tar.gz")
 		//_ = ssh.DownloadFile("/root/kb.tar.gz", "/root/kb.tar.gz")
+	},
+}
+
+var runCmd = &cobra.Command{
+	Use:   "run",
+	Short: "run roycom common server test",
+	Run: func(cmd *cobra.Command, args []string) {
+
 	},
 }

@@ -59,7 +59,7 @@ func NewRowLog() *RowLog {
 	}
 }
 
-func Analysis(filename string) (arraylist.List, error) {
+func AnalysisLogFile(filename string) (arraylist.List, error) {
 	it := errMsgs.Iterator()
 	regStr := "(?i)"
 	for it.Next() {
