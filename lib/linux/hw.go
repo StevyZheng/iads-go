@@ -3,6 +3,7 @@ package linux
 import (
 	"fmt"
 	"github.com/dselans/dmidecode"
+	"github.com/shirou/gopsutil/cpu"
 	"iads/lib/base"
 	"io/ioutil"
 	"strings"
@@ -64,4 +65,9 @@ func (e *DmiInfo) Run() {
 			fmt.Printf("Key: %v Val: %v\n", k, v)
 		}
 	}
+}
+
+func (e *DmiInfo) Run2() {
+	x, _ := cpu.Info()
+	fmt.Print(x)
 }

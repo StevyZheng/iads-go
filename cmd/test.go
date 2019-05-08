@@ -25,7 +25,7 @@ var commonCmd = &cobra.Command{
 		_ = ssh.UploadFile("frp_0.27.0_windows_amd64.zip", "/root/kb.tar.gz")
 		_ = ssh.DownloadFile("/root/kb.tar.gz", "/root/kb.tar.gz")*/
 		d := linux.DmiInfo{}
-		d.Run()
+		d.Run2()
 	},
 }
 
