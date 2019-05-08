@@ -1,6 +1,7 @@
 package linux
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/dselans/dmidecode"
 	"github.com/shirou/gopsutil/cpu"
@@ -69,5 +70,7 @@ func (e *DmiInfo) Run() {
 
 func (e *DmiInfo) Run2() {
 	x, _ := cpu.Info()
-	fmt.Print(x)
+	j, _ := json.MarshalIndent(x, "", "    ")
+	s := string(j)
+	fmt.Println(s)
 }
