@@ -57,7 +57,7 @@ func (e *Ssh) SshConnect() error {
 	return err
 }
 
-func (e *Ssh) execCommand(cmd string) (string, string, error) {
+func (e *Ssh) ExecCommand(cmd string) (string, string, error) {
 	if err := e.SshConnect(); err != nil {
 		log.Fatal(err)
 	}
@@ -70,7 +70,7 @@ func (e *Ssh) execCommand(cmd string) (string, string, error) {
 	return outStr, errStr, err
 }
 
-func (e *Ssh) execCommandList(cmdList arraylist.List) (arraylist.List, arraylist.List, error) {
+func (e *Ssh) ExecCommandList(cmdList arraylist.List) (arraylist.List, arraylist.List, error) {
 	if err := e.SshConnect(); err != nil {
 		log.Fatal(err)
 	}
@@ -167,7 +167,7 @@ func (e *Ssh) UploadFile(localFile string, remoteFile string) error {
 			log.Fatal(err)
 		}
 		defer dstFile.Close()
-		buf := make([]byte, 1024)
+		buf := make([]byte, 1024*1024)
 		for {
 			n, _ := srcFile.Read(buf)
 			if n == 0 {
