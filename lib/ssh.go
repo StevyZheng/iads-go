@@ -6,6 +6,7 @@ import (
 	"github.com/emirpasic/gods/lists/arraylist"
 	"github.com/pkg/sftp"
 	"golang.org/x/crypto/ssh"
+	"io"
 	"io/ioutil"
 	"log"
 	"os"
@@ -167,14 +168,23 @@ func (e *Ssh) UploadFile(localFile string, remoteFile string) error {
 			log.Fatal(err)
 		}
 		defer dstFile.Close()
-		buf := make([]byte, 1024*1024)
+		srcinfo, err := srcFile.Stat()
+		srcSize := srcinfo.Size()
+		nByte, err := io.Copy(dstFile, srcFile)
+		if srcSize != nByte {
+			fmt.Println("srcSize != nByte update file failed.")
+			return err
+		}
+		/*if err != nil{ log.Fatal(err)}
+		if n != size{}
+		buf := make([]byte, 1e9)
 		for {
 			n, _ := srcFile.Read(buf)
 			if n == 0 {
 				break
 			}
 			_, _ = dstFile.Write(buf)
-		}
+		}*/
 
 	} else {
 		if panicHandle := recover(); panicHandle != nil {
