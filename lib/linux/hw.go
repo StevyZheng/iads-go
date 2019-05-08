@@ -69,6 +69,7 @@ func (e *DmiInfo) Run() {
 
 func (e *DmiInfo) Run2() {
 	x, _ := cpu.Info()
+	fmt.Println(len(x))
 	for _, i := range x {
 		j := cpu.InfoStat(i).ModelName
 		fmt.Println(j)
