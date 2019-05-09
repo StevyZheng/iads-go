@@ -4,7 +4,9 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"github.com/olebedev/config"
 	"gopkg.in/ini.v1"
+	"io/ioutil"
 	"log"
 	"os"
 	"strings"
@@ -93,6 +95,7 @@ func (e *CommonConfigParser) SetValue(key string, value string) error {
 	return err
 }
 
+/***************************** like ini ***********************************/
 type SectionConfigParserError struct {
 	errorInfo string
 }
@@ -113,4 +116,157 @@ func NewSectionConfigParser(filename string) *SectionConfigParser {
 	}
 	e.confParser = conf
 	return e
+}
+
+func (e *SectionConfigParser) GetString(section string, key string) string {
+	if e.confParser == nil {
+		log.Fatal("confParser is nil")
+	}
+	s := e.confParser.Section(section)
+	if s == nil {
+		log.Fatal("get section failed.")
+	}
+	return s.Key(key).String()
+}
+
+func (e *SectionConfigParser) GetInt32(section string, key string) int32 {
+	if e.confParser == nil {
+		log.Fatal("confParser is nil")
+	}
+	s := e.confParser.Section(section)
+	if s == nil {
+		log.Fatal("get section failed.")
+	}
+	valueInt, _ := s.Key(key).Int()
+	return int32(valueInt)
+}
+
+func (e *SectionConfigParser) GetUint32(section string, key string) uint32 {
+	if e.confParser == nil {
+		log.Fatal("confParser is nil")
+	}
+	s := e.confParser.Section(section)
+	if s == nil {
+		log.Fatal("get section failed.")
+	}
+	valueInt, _ := s.Key(key).Uint()
+	return uint32(valueInt)
+}
+
+func (e *SectionConfigParser) GetInt64(section string, key string) int64 {
+	if e.confParser == nil {
+		log.Fatal("confParser is nil")
+	}
+	s := e.confParser.Section(section)
+	if s == nil {
+		log.Fatal("get section failed.")
+	}
+	valueInt, _ := s.Key(key).Int64()
+	return valueInt
+}
+
+func (e *SectionConfigParser) GetUint64(section string, key string) uint64 {
+	if e.confParser == nil {
+		log.Fatal("confParser is nil")
+	}
+	s := e.confParser.Section(section)
+	if s == nil {
+		log.Fatal("get section failed.")
+	}
+	valueInt, _ := s.Key(key).Uint64()
+	return valueInt
+}
+
+func (e *SectionConfigParser) GetFloat32(section string, key string) float32 {
+	if e.confParser == nil {
+		log.Fatal("confParser is nil")
+	}
+	s := e.confParser.Section(section)
+	if s == nil {
+		log.Fatal("get section failed.")
+	}
+	valueFloat, _ := s.Key(key).Float64()
+	return float32(valueFloat)
+}
+
+func (e *SectionConfigParser) GetFloat64(section string, key string) float64 {
+	if e.confParser == nil {
+		log.Fatal("confParser is nil")
+	}
+	s := e.confParser.Section(section)
+	if s == nil {
+		log.Fatal("get section failed.")
+	}
+	valueFloat, _ := s.Key(key).Float64()
+	return valueFloat
+}
+
+func (e *SectionConfigParser) SetValue(section string, key string, value string) error {
+	if e.confParser == nil {
+		log.Fatal("confParser is nil")
+	}
+	e.confParser.Section(section).Key(key).SetValue(value)
+	err := e.confParser.SaveTo(e.filePath)
+	return err
+}
+
+/****************************  yaml *******************************/
+type YamlConfigParser struct {
+	cfg      *config.Config
+	filePath string
+}
+
+func (e *YamlConfigParser) Load(filename string) error {
+	file, err := ioutil.ReadFile(filename)
+	if err != nil {
+		panic(err)
+	}
+	yamlString := string(file)
+	e.cfg, err = config.ParseYaml(yamlString)
+	e.filePath = filename
+	return err
+}
+
+//keyStr like "development.users.0.name"
+func (e *YamlConfigParser) GetStringValue(keyStr string) (string, error) {
+	value, err := e.cfg.String(keyStr)
+	return value, err
+}
+
+func (e *YamlConfigParser) GetBoolValue(keyStr string) (bool, error) {
+	value, err := e.cfg.Bool(keyStr)
+	return value, err
+}
+
+func (e *YamlConfigParser) GetIntValue(keyStr string) (int, error) {
+	value, err := e.cfg.Int(keyStr)
+	return value, err
+}
+
+func (e *YamlConfigParser) GetFloat64Value(keyStr string) (float64, error) {
+	value, err := e.cfg.Float64(keyStr)
+	return value, err
+}
+
+func (e *YamlConfigParser) GetListValue(keyStr string) ([]interface{}, error) {
+	value, err := e.cfg.List(keyStr)
+	return value, err
+}
+
+func (e *YamlConfigParser) GetMapValue(keyStr string) (map[string]interface{}, error) {
+	value, err := e.cfg.Map(keyStr)
+	return value, err
+}
+
+func (e *YamlConfigParser) SetValue(keyStr string, value string) error {
+	err := config.Set(e.cfg, keyStr, value)
+	yaml, err := config.RenderYaml(e.cfg)
+	err = ioutil.WriteFile(e.filePath, []byte(yaml), os.ModePerm)
+	return err
+}
+
+func (e *YamlConfigParser) CreateYamlFile(filename string, mapBuffer map[string]interface{}) error {
+	yaml, err := config.RenderYaml(mapBuffer)
+	err = ioutil.WriteFile(e.filePath, []byte(yaml), os.ModePerm)
+	return err
 }
