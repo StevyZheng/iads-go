@@ -3,9 +3,12 @@ package linux
 import (
 	"fmt"
 	"github.com/dselans/dmidecode"
+	"github.com/emirpasic/gods/lists/arraylist"
 	"github.com/shirou/gopsutil/cpu"
 	"iads/lib/base"
 	"io/ioutil"
+	"log"
+	"net"
 	"strings"
 )
 
@@ -49,6 +52,34 @@ func (e *CpuHwInfo) GetCpuHwInfo() {
 	coreCountTmp1 := base.SearchString(tmpStr, ".*core id.*")
 	coreCountTmp := base.UniqStringList(coreCountTmp1)
 	e.CoreCount = len(coreCountTmp)
+}
+
+type NetInfo struct {
+	NetInterface struct {
+		Ipaddr     string
+		Netmask    string
+		Gateway    string
+		Mac        string
+		Dns        string
+		LinkStatus bool
+	}
+	Interfaces arraylist.List
+}
+
+func (e *NetInfo) Init() error {
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, addr := range addrs {
+		fmt.Println(addr)
+		if ipnet, ok := addr.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+			if ipnet.IP.To4() != nil {
+				fmt.Println(ipnet.IP.String())
+			}
+		}
+	}
+	return err
 }
 
 type DmiInfo struct {

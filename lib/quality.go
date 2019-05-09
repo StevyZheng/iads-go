@@ -3,6 +3,7 @@ package lib
 import (
 	"bufio"
 	"github.com/emirpasic/gods/lists/arraylist"
+	"iads/lib/base"
 	"log"
 	"os"
 	"regexp"
@@ -92,4 +93,18 @@ func AnalysisLogFile(filename string) (arraylist.List, error) {
 		index++
 	}
 	return arr, err
+}
+
+/*****************************************************************/
+
+func DownloadFromServer(remotePath string, localPath string) error {
+	ssh := base.NewSsh("192.168.1.111", "root", "000000")
+	err := ssh.SftpConnect()
+	f, _ := os.Stat(remotePath)
+	if f.IsDir() {
+		err = ssh.DownloadDir(remotePath, localPath)
+	} else {
+		err = ssh.DownloadFile(remotePath, localPath)
+	}
+	return err
 }
