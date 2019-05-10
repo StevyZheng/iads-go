@@ -53,10 +53,12 @@ func (e *CommonConfigParser) save() (int, error) {
 	mapLen := len(e.buffer)
 	if e.buffer == nil || mapLen <= 0 {
 		log.Fatal("buffer is nil")
+		return mapLen, err
 	} else {
 		fp, err = os.OpenFile(e.filePath, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644)
 		if fp == nil {
 			log.Fatal("open file failed.")
+			return mapLen, err
 		}
 		for k, v := range e.buffer {
 			rowStr := fmt.Sprintf("%s=%s\n", k, v)
@@ -72,14 +74,13 @@ func (e *CommonConfigParser) GetValue(key string) (string, error) {
 		err error
 	)
 	if e.buffer == nil {
-		err = errors.New("buffer is nil")
-		log.Fatal("buffer is nil")
+		log.Fatal(errors.New("buffer is nil"))
 	} else {
 		if _, ok := e.buffer[key]; ok {
 			ret = e.buffer[key]
 		} else {
-			err = errors.New("nokey")
 			ret = ""
+			log.Fatal(errors.New("nokey"))
 		}
 	}
 	return ret, err
@@ -217,6 +218,7 @@ type YamlConfigParser struct {
 }
 
 func (e *YamlConfigParser) Load(filename string) error {
+
 	file, err := ioutil.ReadFile(filename)
 	if err != nil {
 		panic(err)
@@ -260,6 +262,16 @@ func (e *YamlConfigParser) GetMapValue(keyStr string) (map[string]interface{}, e
 
 func (e *YamlConfigParser) SetValue(keyStr string, value string) error {
 	err := config.Set(e.cfg, keyStr, value)
+	return err
+}
+
+func (e *YamlConfigParser) SaveToFile(filename string) error {
+	yaml, err := config.RenderYaml(e.cfg)
+	err = ioutil.WriteFile(filename, []byte(yaml), os.ModePerm)
+	return err
+}
+
+func (e *YamlConfigParser) SaveSelf(filename string) error {
 	yaml, err := config.RenderYaml(e.cfg)
 	err = ioutil.WriteFile(e.filePath, []byte(yaml), os.ModePerm)
 	return err
