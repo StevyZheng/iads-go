@@ -92,9 +92,10 @@ func (e *DmiInfo) Run() {
 	}
 	for handle, record := range dmi.Data {
 		fmt.Println("Checking record:", handle)
-		for k, v := range record {
-			fmt.Printf("Key: %v Val: %v\n", k, v)
-		}
+		//for k, v := range record {
+		//	fmt.Printf("Key: %v Val: %v\n", k, v)
+		//}
+		fmt.Println(record[0])
 	}
 }
 
