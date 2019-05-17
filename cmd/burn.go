@@ -3,6 +3,8 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"iads/lib/base"
+	"iads/lib/linux"
+	"log"
 	"runtime"
 	"sync"
 )
@@ -20,9 +22,15 @@ var burnCmd = &cobra.Command{
 	Use:   "burn",
 	Short: "burn cpu: 100%",
 	Run: func(cmd *cobra.Command, args []string) {
-		runtime.GOMAXPROCS(4)
+		cpuInfo := linux.CpuHwInfo{}
+		cpuInfo.GetCpuHwInfo()
+		if cpuInfo.CoreCount <= 0 {
+			log.Fatal("getCpuInfo error.")
+			return
+		}
+		runtime.GOMAXPROCS(cpuInfo.CoreCount)
 		var wg sync.WaitGroup
-		for i := 0; i < 4; i++ {
+		for i := 0; i < cpuInfo.CoreCount; i++ {
 			wg.Add(1)
 			go burnFunc(&wg)
 		}
