@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"fmt"
+	"github.com/jedib0t/go-pretty/table"
 	"github.com/spf13/cobra"
 	"iads/lib/linux"
 )
@@ -35,6 +37,15 @@ var runCmd = &cobra.Command{
 	Use:   "run",
 	Short: "run roycom common server test",
 	Run: func(cmd *cobra.Command, args []string) {
-
+		tw := table.NewWriter()
+		tw.AppendHeader(table.Row{"#", "haha", "hehe", "heihei"})
+		tw.AppendRows([]table.Row{
+			{1, "1", "2", "hehe3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333"},
+			{2, "1", "2", 3},
+		})
+		tw.AppendFooter(table.Row{"", "", "foot", 10000})
+		tw.SetIndexColumn(1)
+		tw.SetAllowedColumnLengths([]int{20, 20, 20, 20})
+		fmt.Println(tw.Render())
 	},
 }

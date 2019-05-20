@@ -49,7 +49,7 @@ func (e *CpuHwInfo) GetCpuHwInfo() {
 	countTmp1 := base.SearchString(tmpStr, ".*physical id.*")
 	countTmp := base.UniqStringList(countTmp1)
 	e.Count = len(countTmp)
-	coreCountTmp1 := base.SearchString(tmpStr, ".*core id.*")
+	coreCountTmp1 := base.SearchString(tmpStr, ".*processor.*")
 	coreCountTmp := base.UniqStringList(coreCountTmp1)
 	e.CoreCount = len(coreCountTmp)
 }
