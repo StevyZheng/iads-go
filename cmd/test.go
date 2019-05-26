@@ -40,6 +40,6 @@ var runCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		k8s := api_v1_0.K8sOp{}
 		k8s.Init()
-		fmt.Println(k8s.GetNodeInfo())
+		fmt.Println(k8s.GetPodInfo().Items[1].Name)
 	},
 }
