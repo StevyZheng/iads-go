@@ -39,7 +39,8 @@ require (
 	gopkg.in/go-playground/validator.v8 v8.18.2 // indirect
 	gopkg.in/ini.v1 v1.42.0
 	gopkg.in/yaml.v2 v2.2.2 // indirect
-	k8s.io/api v0.0.0-20190515023547-db5a9d1c40eb // indirect
+	k8s.io/api v0.0.0-20190515023547-db5a9d1c40eb
+	k8s.io/apimachinery v0.0.0-20190515023456-b74e4c97951f
 	k8s.io/client-go v11.0.0+incompatible
 	k8s.io/utils v0.0.0-20190506122338-8fab8cb257d5 // indirect
 )
