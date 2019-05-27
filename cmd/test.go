@@ -1,11 +1,11 @@
 package cmd
 
 import (
-	"fmt"
+	"iads/lib/base"
+
 	//"github.com/jedib0t/go-pretty/table"
 	"github.com/spf13/cobra"
 	"iads/lib/linux"
-	"iads/server/api_v1_0"
 )
 
 func init() {
@@ -38,8 +38,7 @@ var runCmd = &cobra.Command{
 	Use:   "run",
 	Short: "run roycom common server test",
 	Run: func(cmd *cobra.Command, args []string) {
-		k8s := api_v1_0.K8sOp{}
-		k8s.Init()
-		fmt.Println(k8s.GetPodInfo().Items[1].Name)
+		d, _ := base.NewDocker()
+		d.ContainerList()
 	},
 }
