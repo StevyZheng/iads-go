@@ -2,9 +2,10 @@ package base
 
 import (
 	"context"
-	"fmt"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
+	"github.com/gin-gonic/gin/json"
+	"io"
 )
 
 type Docker struct {
@@ -23,13 +24,42 @@ func NewDocker() (*Docker, error) {
 	return &docker, err
 }
 
-func (e *Docker) ContainerList() {
-	var err error
+func (e *Docker) ImageList() []types.ImageSummary {
+	imgs, err := e.cli.ImageList(context.Background(), types.ImageListOptions{})
+	if err != nil{ panic(err) }
+	return imgs
+}
+
+func (e *Docker)ImagePull(imgName string)  {
+	events, err := e.cli.ImagePull(context.Background(), imgName, types.ImagePullOptions{})
+	if err != nil { panic(err) }
+	ret := json.NewDecoder(events)
+	type Event struct {
+		Status         string `json:"status"`
+		Error          string `json:"error"`
+		Progress       string `json:"progress"`
+		ProgressDetail struct {
+			Current int `json:"current"`
+			Total   int `json:"total"`
+		} `json:"progressDetail"`
+	}
+	var event *Event
+	for {
+		if err := ret.Decode(&event); err != nil {
+			if err == io.EOF {
+				break
+			}
+			panic(err)
+		}
+	}
+}
+
+func (e *Docker) ContainerList() []types.Container {
 	containers, err := e.cli.ContainerList(context.Background(), types.ContainerListOptions{})
-	if err != nil {
-		panic(err)
-	}
-	for _, container := range containers {
-		fmt.Printf("%s %s\n", container.ID[:10], container.Image)
-	}
+	if err != nil { panic(err) }
+	return containers
+}
+
+func (e *Docker)  {
+
 }
