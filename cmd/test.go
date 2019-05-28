@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"iads/lib/base"
-
+	"fmt"
 	//"github.com/jedib0t/go-pretty/table"
 	"github.com/spf13/cobra"
+	"iads/lib/base"
 	"iads/lib/linux"
 )
 
@@ -39,6 +39,9 @@ var runCmd = &cobra.Command{
 	Short: "run roycom common server test",
 	Run: func(cmd *cobra.Command, args []string) {
 		d, _ := base.NewDocker()
-		d.ContainerList()
+		d1 := d.ImageList()
+		for v := range d1 {
+			fmt.Println(v)
+		}
 	},
 }

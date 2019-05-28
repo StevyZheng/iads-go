@@ -19,6 +19,7 @@
         <method importPath="net/http" receiver="*Server" name="Close" />
         <method importPath="golang.org/x/crypto/ssh" receiver="Client" name="Close" />
         <method importPath="golang.org/x/crypto/ssh" receiver="*Session" name="Close" />
+        <method importPath="io" receiver="ReadCloser" name="Close" />
       </methods>
     </inspection_tool>
   </profile>

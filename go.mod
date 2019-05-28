@@ -24,6 +24,7 @@ require (
 	github.com/kr/fs v0.1.0 // indirect
 	github.com/mattn/go-isatty v0.0.7 // indirect
 	github.com/mholt/archiver v3.1.1+incompatible
+	github.com/moby/moby v1.13.1
 	github.com/nwaples/rardecode v1.0.0 // indirect
 	github.com/olebedev/config v0.0.0-20180910155717-57f804269e64
 	github.com/opencontainers/go-digest v1.0.0-rc1 // indirect
