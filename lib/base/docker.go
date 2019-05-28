@@ -137,6 +137,6 @@ func (e *Docker) ContainerRemove(containerID string) error {
 }
 
 func (e *Docker) ContainerLogs(container string) (io.ReadCloser, error) {
-	reader, err := e.cli.ContainerLogs(context.Background(), container, types.ContainerLogsOptions{})
+	reader, err := e.cli.ContainerLogs(context.Background(), container, types.ContainerLogsOptions{ShowStdout: true})
 	return reader, err
 }
