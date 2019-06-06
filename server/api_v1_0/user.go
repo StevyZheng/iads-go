@@ -7,6 +7,34 @@ import (
 	"strconv"
 )
 
+type LoginResult struct {
+	Token string `json:"token"`
+	models.User
+}
+
+// 登录
+func Login(c *gin.Context) {
+	var loginReq module.LoginReq
+	if c.BindJSON(&loginReq) == nil {
+		isPass, user, err := module.LoginCheck(loginReq)
+		if isPass {
+			generateToken(c, user)
+		} else {
+			c.JSON(http.StatusOK, gin.H{
+				"status": -1,
+				"msg":    "验证失败" + err.Error(),
+			})
+			return
+		}
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"status": -1,
+			"msg":    "json 解析失败",
+		})
+		return
+	}
+}
+
 //列表数据
 func UserList(c *gin.Context) {
 	var user models.User
@@ -27,7 +55,7 @@ func UserList(c *gin.Context) {
 }
 
 //添加数据
-func Store(c *gin.Context) {
+func AddUser(c *gin.Context) {
 	var user models.User
 	user.Username = c.Request.FormValue("username")
 	user.Password = c.Request.FormValue("password")
@@ -47,7 +75,7 @@ func Store(c *gin.Context) {
 }
 
 //修改数据
-func Update(c *gin.Context) {
+func UpdateUser(c *gin.Context) {
 	var user models.User
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	user.Password = c.Request.FormValue("password")
@@ -66,7 +94,7 @@ func Update(c *gin.Context) {
 }
 
 //删除数据
-func Destroy(c *gin.Context) {
+func DeleteUser(c *gin.Context) {
 	var user models.User
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	result, err := user.Destroy(id)

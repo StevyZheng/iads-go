@@ -17,9 +17,9 @@ func InitRouter() *gin.Engine {
 		})
 	})
 	v1_0.GET("/userlist", api_v1_0.UserList)
-	v1_0.POST("/user", api_v1_0.Store)
-	v1_0.PUT("/user/:id", api_v1_0.Update)
-	v1_0.DELETE("/user/:id", api_v1_0.Destroy)
+	v1_0.POST("/user", api_v1_0.AddUser)
+	v1_0.PUT("/user/:id", api_v1_0.UpdateUser)
+	v1_0.DELETE("/user/:id", api_v1_0.DeleteUser)
 
 	v1_0.GET("/cpuinfo", api_v1_0.CpuInfo)
 

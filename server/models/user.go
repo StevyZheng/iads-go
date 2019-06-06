@@ -4,10 +4,15 @@ import (
 	orm "iads/server/database"
 )
 
+//用户类
 type User struct {
-	ID       int64  `json:"id"`
-	Username string `json:"username"`
-	Password string `json:"password"`
+	ID         int64  `json:"id"`
+	Username   string `json:"username"`
+	Password   string `json:"password"`
+	Email      string `json:"email"`
+	Gender     string `json:"gender"`
+	Phone      string `json:"phone"`
+	Permission string `json:"permission"`
 }
 
 func CreateTable() {

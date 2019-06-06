@@ -6,6 +6,7 @@ require (
 	github.com/Microsoft/go-winio v0.4.12 // indirect
 	github.com/StackExchange/wmi v0.0.0-20181212234831-e0a55b97c705 // indirect
 	github.com/chfenger/goNum v0.0.0-20190320001814-cd9918d5b465
+	github.com/dgrijalva/jwt-go v0.0.0-20160705203006-01aeca54ebda
 	github.com/docker/distribution v2.7.1+incompatible // indirect
 	github.com/docker/docker v1.13.1
 	github.com/docker/go-connections v0.4.0 // indirect
