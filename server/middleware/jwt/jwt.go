@@ -120,7 +120,7 @@ func (j *JWT) RefreshToken(tokenString string) (string, error) {
 	})
 	if err != nil {
 		return "", err
-	}?
+	}
 	if claims, ok := token.Claims.(*CustomClaims); ok && token.Valid {
 		jwt.TimeFunc = time.Now
 		claims.StandardClaims.ExpiresAt = time.Now().Add(1 * time.Hour).Unix()
