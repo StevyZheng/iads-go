@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="597c0b5a-d3fa-45d2-ab37-930d76ff56e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api_v1_0/hw.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api_v1_0/hw.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/api_v1_0/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/api_v1_0/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/middleware/jwt/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/jwt/jwt.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/router.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,35 +12,26 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/api_v1_0/hw.go">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/middleware/jwt/jwt.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+            <state relative-caret-position="357">
+              <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
               <folding>
-                <element signature="e#18#119#0" expanded="true" />
+                <element signature="e#13#119#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/go.mod">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/base/kubernetes.go">
+        <entry file="file://$PROJECT_DIR$/server/router/router.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="294">
+              <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
               <folding>
-                <element signature="e#14#201#0" expanded="true" />
+                <element signature="e#16#90#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,15 +85,15 @@
         <option value="$PROJECT_DIR$/server/util/jwt.go" />
         <option value="$PROJECT_DIR$/server/router/router.go" />
         <option value="$PROJECT_DIR$/server/api_v1_0/user.go" />
-        <option value="$PROJECT_DIR$/server/middleware/jwt/jwt.go" />
-        <option value="$PROJECT_DIR$/server/api_v1_0/hw.go" />
         <option value="$PROJECT_DIR$/go.mod" />
+        <option value="$PROJECT_DIR$/server/api_v1_0/hw.go" />
+        <option value="$PROJECT_DIR$/server/middleware/jwt/jwt.go" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="483" />
-    <option name="y" value="84" />
+    <option name="x" value="134" />
+    <option name="y" value="92" />
     <option name="width" value="1103" />
     <option name="height" value="831" />
   </component>
@@ -116,6 +102,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -132,17 +119,6 @@
               <item name="iads-go" type="b2602c69:ProjectViewProjectNode" />
               <item name="iads-go" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iads-go" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iads-go" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iads-go" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iads-go" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="iads-go" type="b2602c69:ProjectViewProjectNode" />
@@ -190,7 +166,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -251,10 +226,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="460" y="96" width="1103" height="831" extended-state="0" />
+    <frame x="134" y="92" width="1103" height="831" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1748319" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18251681" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -267,7 +242,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3283582" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.16791604" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.16791604" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50143814" side_tool="true" weight="0.25177306" />
       <window_info anchor="bottom" id="REST Client" order="12" weight="0.67142856" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -288,7 +263,8 @@
     <MESSAGE value="20190523" />
     <MESSAGE value="test" />
     <MESSAGE value="201906052341" />
-    <option name="LAST_COMMIT_MESSAGE" value="201906052341" />
+    <MESSAGE value="201906071232" />
+    <option name="LAST_COMMIT_MESSAGE" value="201906071232" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -360,13 +336,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Go/pkg/mod/k8s.io/api@v0.0.0-20190515023547-db5a9d1c40eb/core/v1/types.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="3224" column="5" selection-start-line="3224" selection-start-column="5" selection-end-line="3224" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/Go/pkg/mod/k8s.io/api@v0.0.0-20190515023547-db5a9d1c40eb/core/v1/types.go" />
     <entry file="file://D:/Go/pkg/mod/k8s.io/client-go@v11.0.0+incompatible/kubernetes/typed/core/v1/pod.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -458,23 +428,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/middleware/jwt/jwt.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="30" lean-forward="true" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/router/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#16#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/database/mysql.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -546,10 +499,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/go.mod">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="70" column="34" selection-start-line="70" selection-start-column="34" selection-end-line="70" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/api_v1_0/hw.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        <state relative-caret-position="336">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
           <folding>
             <element signature="e#18#119#0" expanded="true" />
           </folding>
@@ -558,7 +518,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/base/kubernetes.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="337">
           <caret line="57" selection-start-line="57" selection-end-line="57" />
           <folding>
             <element signature="e#14#201#0" expanded="true" />
@@ -566,10 +526,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/go.mod">
+    <entry file="file://$PROJECT_DIR$/server/middleware/jwt/jwt.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="60" column="49" selection-start-line="60" selection-start-column="49" selection-end-line="60" selection-end-column="49" />
+        <state relative-caret-position="357">
+          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding>
+            <element signature="e#13#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/router/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+          <folding>
+            <element signature="e#16#90#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
