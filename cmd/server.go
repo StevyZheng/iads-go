@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"iads/server"
-	"iads/server/models"
+	"iads/server/routers/api/v1/user"
 )
 
 func init() {
@@ -12,9 +12,9 @@ func init() {
 
 var serverCmd = &cobra.Command{
 	Use:   "server",
-	Short: "restful api_v1_0 server",
+	Short: "restful api server",
 	Run: func(cmd *cobra.Command, args []string) {
-		models.CreateTable()
+		user.CreateTable()
 		server.ServerStart()
 	},
 }

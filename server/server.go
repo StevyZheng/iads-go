@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	router2 "iads/server/router"
+	"iads/server/routers"
 	"net/http"
 	"runtime"
 	"time"
@@ -12,7 +12,7 @@ import (
 func ServerStart() {
 	runtime.GOMAXPROCS(2)
 	gin.SetMode(gin.ReleaseMode)
-	router := router2.InitRouter()
+	router := routers.InitRouter()
 
 	ser := &http.Server{
 		Addr:           fmt.Sprintf(":%d", 80),

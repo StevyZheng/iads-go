@@ -1,4 +1,4 @@
-package api_v1_0
+package hardware
 
 import (
 	"encoding/json"
