@@ -2,6 +2,7 @@ package user
 
 import (
 	"fmt"
+	"github.com/jinzhu/gorm"
 	orm "iads/server/common"
 )
 
@@ -13,17 +14,29 @@ func init() {
 
 //用户类
 type User struct {
-	ID       int64  `json:"id"`
+	gorm.Model
 	Username string `json:"username" form:"username" validate:"required"`
 	Password string `json:"password" form:"password" validate:"required"`
 	Email    string `json:"email"`
 	Gender   string `json:"gender"`
 	Phone    string `json:"phone"`
-	Role     string `json:"role" form:"role"`
+	RoleID   uint   `json:"role_id"`
+	Role     Role   `json:"role" gorm:"ForeignKey:RoleID;AssociationForeignKey:Refer"`
+}
+
+type Role struct {
+	gorm.Model
+	Refer    int
+	Rolename string `json:"rolename"`
+}
+
+type Permissions struct {
+	gorm.Model
+	PermissionsEntry string `json:"permissions_entry"`
 }
 
 func CreateTable() {
-	dbConnect.Eloquent.AutoMigrate(User{})
+	dbConnect.Eloquent.AutoMigrate(&User{}, &Role{}, &Permissions{})
 }
 
 var Users []User
@@ -58,7 +71,7 @@ func (user *User) GetOneByUsername(username string) error {
 }
 
 //添加用户
-func (user User) Insert() (id int64, err error) {
+func (user User) Insert() (id uint, err error) {
 	ret := dbConnect.Eloquent.Create(&user)
 	id = user.ID
 	if ret.Error != nil {

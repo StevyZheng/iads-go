@@ -22,8 +22,8 @@ func init() {
 	Auth, err = jwt.New(&jwt.GinJWTMiddleware{
 		Realm:       "test zone",
 		Key:         []byte("secret key"),
-		Timeout:     time.Hour,
-		MaxRefresh:  time.Hour,
+		Timeout:     time.Hour * 1,
+		MaxRefresh:  time.Hour * 24 * 7,
 		IdentityKey: identityKey,
 		// 登录时调用，可将载荷添加到token中
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
