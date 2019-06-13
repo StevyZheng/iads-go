@@ -4,10 +4,10 @@
     <list default="true" id="597c0b5a-d3fa-45d2-ab37-930d76ff56e6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Stevy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Stevy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routers/api/v1/user/controlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/api/v1/user/controlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routers/api/v1/user/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/api/v1/user/middlewares.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routers/api/v1/user/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/api/v1/user/models.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routers/api/v1/user/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/api/v1/user/routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routers/api/v1/v1.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/api/v1/v1.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,12 +16,45 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/models.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+            <state relative-caret-position="336">
+              <caret line="160" column="34" selection-start-line="160" selection-start-column="34" selection-end-line="160" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/controlers.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="108" column="1" lean-forward="true" selection-start-line="108" selection-start-column="1" selection-end-line="108" selection-end-column="1" />
+              <folding>
+                <element signature="e#14#113#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/routes.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="287">
+              <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+              <folding>
+                <element signature="e#14#77#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/routers/api/v1/v1.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -96,31 +129,32 @@
         <option value="$PROJECT_DIR$/server/router/api/v1/user/routes.go" />
         <option value="$PROJECT_DIR$/server/router/routers.go" />
         <option value="$PROJECT_DIR$/server/server.go" />
-        <option value="$PROJECT_DIR$/server/routers/api/v1/v1.go" />
         <option value="$PROJECT_DIR$/server/common/middlewares/authz.go" />
         <option value="$PROJECT_DIR$/server/routers/routers.go" />
-        <option value="$PROJECT_DIR$/server/routers/api/v1/user/routes.go" />
         <option value="$PROJECT_DIR$/cmd/server.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/user/models.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/user/middlewares.go" />
         <option value="$PROJECT_DIR$/server/common/conf.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/rabc.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/rabc/models.go" />
+        <option value="$PROJECT_DIR$/server/routers/api/v1/v1.go" />
+        <option value="$PROJECT_DIR$/server/routers/api/v1/user/routes.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/user/controlers.go" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="236" />
-    <option name="y" value="1" />
-    <option name="width" value="981" />
-    <option name="height" value="724" />
+    <option name="x" value="490" />
+    <option name="y" value="153" />
+    <option name="width" value="1315" />
+    <option name="height" value="831" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -136,13 +170,12 @@
             <path>
               <item name="iads-go" type="b2602c69:ProjectViewProjectNode" />
               <item name="iads-go" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="iads-go" type="b2602c69:ProjectViewProjectNode" />
               <item name="iads-go" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="iads-go" type="b2602c69:ProjectViewProjectNode" />
@@ -174,15 +207,10 @@
               <item name="v1" type="462c0819:PsiDirectoryNode" />
               <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="iads-go" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -247,15 +275,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="236" y="1" width="981" height="724" extended-state="0" />
+    <frame x="490" y="153" width="1315" height="831" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27361563" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20909816" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32978722" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49856183" visible="true" weight="0.20744681" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49856183" visible="true" weight="0.20744681" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -525,13 +553,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/common/conf.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/server/common/conf.go" />
     <entry file="file://$PROJECT_DIR$/lib/base/string.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1449" />
@@ -544,20 +566,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/v1.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/rabc.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="16" lean-forward="true" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/rabc.go" />
     <entry file="file://$PROJECT_DIR$/server/routers/routers.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
@@ -565,31 +574,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/routes.go">
+    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/rabc/models.go" />
+    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/v1.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/controlers.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/rabc/models.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="4" lean-forward="true" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        <state relative-caret-position="231">
+          <caret line="16" column="34" lean-forward="true" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/models.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        <state relative-caret-position="336">
+          <caret line="160" column="34" selection-start-line="160" selection-start-column="34" selection-end-line="160" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/routes.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+          <folding>
+            <element signature="e#14#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/controlers.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="108" column="1" lean-forward="true" selection-start-line="108" selection-start-column="1" selection-end-line="108" selection-end-column="1" />
+          <folding>
+            <element signature="e#14#113#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
