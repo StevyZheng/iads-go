@@ -1,14 +1,13 @@
 package user
 
 import (
-	"fmt"
 	"github.com/jinzhu/gorm"
 	orm "iads/server/common"
 )
 
 var dbConnect *orm.Connection
 
-func init() {
+func Init() {
 	dbConnect = orm.NewConnection()
 }
 
@@ -21,12 +20,11 @@ type User struct {
 	Gender   string `json:"gender"`
 	Phone    string `json:"phone"`
 	RoleID   uint   `json:"role_id"`
-	Role     Role   `json:"role" gorm:"ForeignKey:RoleID;AssociationForeignKey:Refer"`
+	Role     Role   `json:"role"`
 }
 
 type Role struct {
 	gorm.Model
-	Refer    int
 	Rolename string `json:"rolename"`
 }
 
@@ -36,10 +34,9 @@ type Permissions struct {
 }
 
 func CreateTable() {
-	dbConnect.Eloquent.AutoMigrate(&User{}, &Role{}, &Permissions{})
+	dbConnect.Eloquent.AutoMigrate(&Permissions{}, &Role{}, &User{})
+	dbConnect.Eloquent.Model(&User{}).AddForeignKey("role_id", "roles(id)", "no action", "no action")
 }
-
-var Users []User
 
 type login struct {
 	Username string `form:"username" validate:"required"`
@@ -58,22 +55,24 @@ func (login *login) validator() (*User, string, bool) {
 
 	if user.Password != login.Password {
 		msg = "密码错误！"
-		fmt.Println("username:", user.Username, "|pwd:", user.Password, "| loginuser:", login.Username, "|loginPwd:", login.Password)
 		return nil, msg, false
 	}
 	msg = "登录成功！"
 	return user, msg, true
 }
 
-func (user *User) GetOneByUsername(username string) error {
-	err = dbConnect.Eloquent.Find(&user).Error
-	return err
+func (user *User) GetOneByUsername(username string) bool {
+	var u User
+	dbConnect.Eloquent.Select("id").Where("username = ?", username).First(&u)
+	if u.ID > 0 {
+		return true
+	}
+	return false
 }
 
-//添加用户
-func (user User) Insert() (id uint, err error) {
+//添加user用户
+func (user User) UserAdd() (err error) {
 	ret := dbConnect.Eloquent.Create(&user)
-	id = user.ID
 	if ret.Error != nil {
 		err = ret.Error
 		return
@@ -81,16 +80,16 @@ func (user User) Insert() (id uint, err error) {
 	return
 }
 
-//用户列表
+//用户user列表
 func (user *User) UserList() (users []User, err error) {
-	if err = dbConnect.Eloquent.Find(&users).Error; err != nil {
+	if err = dbConnect.Eloquent.Preload("Role").Find(&users).Error; err != nil {
 		return
 	}
 	return
 }
 
-//修改
-func (user *User) Update(id int64) (updateUser User, err error) {
+//修改user
+func (user *User) UserUpdate(id uint) (updateUser User, err error) {
 	if err = dbConnect.Eloquent.Select([]string{"id", "username"}).First(&updateUser, id).Error; err != nil {
 		return
 	}
@@ -102,8 +101,8 @@ func (user *User) Update(id int64) (updateUser User, err error) {
 	return
 }
 
-//删除数据
-func (user *User) Destroy(id int64) (Result User, err error) {
+//删除user数据
+func (user *User) UserDestroy(id uint) (Result User, err error) {
 	if err = dbConnect.Eloquent.Select([]string{"id"}).First(&user, id).Error; err != nil {
 		return
 	}
@@ -111,5 +110,57 @@ func (user *User) Destroy(id int64) (Result User, err error) {
 		return
 	}
 	Result = *user
+	return
+}
+
+//****************************************
+
+func (role *Role) GetOneByRolename(rolename string) bool {
+	var r Role
+	dbConnect.Eloquent.Select("id").Where("rolename = ?", rolename).First(&r)
+	if r.ID > 0 {
+		return true
+	}
+	return false
+}
+
+func (role Role) RoleAdd() (err error) {
+	ret := dbConnect.Eloquent.Create(&role)
+	if ret.Error != nil {
+		err = ret.Error
+		return
+	}
+	return
+}
+
+func (role *Role) RoleList() (roles []Role, err error) {
+	if err = dbConnect.Eloquent.Find(&roles).Error; err != nil {
+		return
+	}
+	return
+}
+
+//修改role
+func (role *Role) RoleUpdate(id uint) (updateRole Role, err error) {
+	if err = dbConnect.Eloquent.Select([]string{"id", "rolename"}).First(&updateRole, id).Error; err != nil {
+		return
+	}
+	//参数1:是要修改的数据
+	//参数2:是修改的数据
+	if err = dbConnect.Eloquent.Model(&updateRole).Update(&role).Error; err != nil {
+		return
+	}
+	return
+}
+
+//删除role数据
+func (role *Role) RoleDestroy(id uint) (Result Role, err error) {
+	if err = dbConnect.Eloquent.Select([]string{"id"}).First(&role, id).Error; err != nil {
+		return
+	}
+	if err = dbConnect.Eloquent.Delete(&role).Error; err != nil {
+		return
+	}
+	Result = *role
 	return
 }

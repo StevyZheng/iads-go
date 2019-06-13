@@ -39,7 +39,7 @@ func init() {
 		},
 		// 验证登录状态
 		IdentityHandler: func(c *gin.Context) interface{} {
-			fmt.Println("调用：IdentityHandler")
+			//fmt.Println("调用：IdentityHandler")
 			claims := jwt.ExtractClaims(c)
 			// return &User{
 			// 	Username: claims["id"].(string),

@@ -14,6 +14,7 @@ var serverCmd = &cobra.Command{
 	Use:   "server",
 	Short: "restful api server",
 	Run: func(cmd *cobra.Command, args []string) {
+		user.Init()
 		user.CreateTable()
 		server.ServerStart()
 	},

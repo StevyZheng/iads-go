@@ -4,7 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"iads/server/common"
 	"iads/server/common/pkg/e"
-	"net/http"
 	"strconv"
 )
 
@@ -25,14 +24,16 @@ func register(c *gin.Context) {
 		return
 	}
 
-	if err = u.GetOneByUsername(u.Username); err != nil {
-		_, err := u.Insert()
+	if flag := u.GetOneByUsername(u.Username); flag == false {
+		err := u.UserAdd()
 		if err != nil {
 			common.RES(c, e.ERROR, gin.H{
 				"message": err.Error(),
 			})
 		} else {
-			common.RES(c, e.SUCCESS, gin.H{})
+			common.RES(c, e.SUCCESS, gin.H{
+				"message": "注册成功",
+			})
 		}
 	} else {
 		common.RES(c, e.ERROR, gin.H{
@@ -41,7 +42,7 @@ func register(c *gin.Context) {
 	}
 }
 
-//列表数据
+//列表user数据
 func UserList(c *gin.Context) {
 	var users User
 	result, err := users.UserList()
@@ -57,7 +58,7 @@ func UserList(c *gin.Context) {
 	}
 }
 
-// @Summary 添加用户
+// @Summary 添加user用户
 // @Description add user by username and password
 // @Accept  json
 // @Produce  json
@@ -66,30 +67,38 @@ func UserList(c *gin.Context) {
 // @Success 200 {string} string	"ok"
 // @Router /v1.0/useradd [post]
 func AddUser(c *gin.Context) {
-	var user User
-	user.Username = c.Request.FormValue("username")
-	user.Password = c.Request.FormValue("password")
-	id, err := user.Insert()
-	if err != nil {
-		c.JSON(http.StatusOK, gin.H{
-			"code":    -1,
-			"message": "添加失败",
+	u := &User{}
+	if err := c.ShouldBindJSON(u); err != nil {
+		common.RES(c, e.INVALID_PARAMS, gin.H{
+			"message": err.Error(),
 		})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{
-		"code":    1,
-		"message": "添加成功",
-		"data":    id,
-	})
+
+	if flag := u.GetOneByUsername(u.Username); flag == false {
+		err := u.UserAdd()
+		if err != nil {
+			common.RES(c, e.ERROR, gin.H{
+				"message": err.Error(),
+			})
+		} else {
+			common.RES(c, e.SUCCESS, gin.H{
+				"message": "添加成功",
+			})
+		}
+	} else {
+		common.RES(c, e.ERROR, gin.H{
+			"message": "用户名已存在！",
+		})
+	}
 }
 
-//修改数据
+//修改user数据
 func UpdateUserByID(c *gin.Context) {
 	var user User
-	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	id, err := strconv.ParseUint(c.Param("id"), 10, 32)
 	user.Password = c.Request.FormValue("password")
-	_, err = user.Update(id)
+	_, err = user.UserUpdate(uint(id))
 	if err != nil {
 		common.RES(c, e.ERROR, gin.H{
 			"message": err.Error(),
@@ -99,21 +108,56 @@ func UpdateUserByID(c *gin.Context) {
 	}
 }
 
-//删除数据
+//删除user数据
 func DeleteUserByID(c *gin.Context) {
 	var user User
-	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
+	id, err := strconv.ParseUint(c.Param("id"), 10, 32)
 	if id == 0 {
 		common.RES(c, e.INVALID_PARAMS, gin.H{
 			"message": "id必须大于0",
 		})
 	}
-	_, err = user.Destroy(id)
+	_, err = user.UserDestroy(uint(id))
 	if err != nil {
 		common.RES(c, e.ERROR, gin.H{
 			"message": err.Error(),
 		})
 	} else {
 		common.RES(c, e.SUCCESS, gin.H{})
+	}
+}
+
+// @Summary 添加role
+// @Description add user by username and password
+// @Accept  json
+// @Produce  json
+// @Param  username query string true "RoleName"
+// @Param  password query string true "Password"
+// @Success 200 {string} string	"ok"
+// @Router /v1.0/useradd [post]
+func AddRole(c *gin.Context) {
+	r := &Role{}
+	if err := c.ShouldBindJSON(r); err != nil {
+		common.RES(c, e.INVALID_PARAMS, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	if flag := r.GetOneByRolename(r.Rolename); flag == false {
+		err := r.RoleAdd()
+		if err != nil {
+			common.RES(c, e.ERROR, gin.H{
+				"message": err.Error(),
+			})
+		} else {
+			common.RES(c, e.SUCCESS, gin.H{
+				"message": "添加成功",
+			})
+		}
+	} else {
+		common.RES(c, e.ERROR, gin.H{
+			"message": "role名已存在！",
+		})
 	}
 }
