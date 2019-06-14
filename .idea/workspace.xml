@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="597c0b5a-d3fa-45d2-ab37-930d76ff56e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Stevy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Stevy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routers/api/v1/user/controlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/api/v1/user/controlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routers/api/v1/user/middlewares.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/api/v1/user/middlewares.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routers/api/v1/user/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/routers/api/v1/user/models.go" afterDir="false" />
-    </list>
+    <list default="true" id="597c0b5a-d3fa-45d2-ab37-930d76ff56e6" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/models.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+            <state relative-caret-position="322">
+              <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -101,18 +94,18 @@
         <option value="$PROJECT_DIR$/server/routers/routers.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/user/routes.go" />
         <option value="$PROJECT_DIR$/cmd/server.go" />
-        <option value="$PROJECT_DIR$/server/routers/api/v1/user/models.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/user/middlewares.go" />
         <option value="$PROJECT_DIR$/server/common/conf.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/rabc.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/rabc/models.go" />
         <option value="$PROJECT_DIR$/server/routers/api/v1/user/controlers.go" />
+        <option value="$PROJECT_DIR$/server/routers/api/v1/user/models.go" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="236" />
-    <option name="y" value="1" />
+    <option name="x" value="148" />
+    <option name="y" value="5" />
     <option name="width" value="981" />
     <option name="height" value="724" />
   </component>
@@ -247,7 +240,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="236" y="1" width="981" height="724" extended-state="0" />
+    <frame x="236" y="1" width="981" height="724" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27361563" />
@@ -287,7 +280,8 @@
     <MESSAGE value="201906071232" />
     <MESSAGE value="201906111814" />
     <MESSAGE value="201906121802" />
-    <option name="LAST_COMMIT_MESSAGE" value="201906121802" />
+    <MESSAGE value="201906131829" />
+    <option name="LAST_COMMIT_MESSAGE" value="201906131829" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -588,8 +582,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/routers/api/v1/user/models.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        <state relative-caret-position="322">
+          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
         </state>
       </provider>
     </entry>
