@@ -19,6 +19,7 @@ func RegisterRouter(router *gin.RouterGroup) {
 			})
 		})
 		v1.GET("/cpuinfo", hardware.CpuInfo)
-		user.RegisterRouter(v1.Group("/user"))
+		user.RegisterUserRouter(v1.Group("/user"))
+		user.RegisterRoleRouter(v1.Group("/role"))
 	}
 }

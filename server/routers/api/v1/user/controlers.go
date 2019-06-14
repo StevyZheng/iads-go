@@ -123,7 +123,25 @@ func DeleteUserByID(c *gin.Context) {
 			"message": err.Error(),
 		})
 	} else {
-		common.RES(c, e.SUCCESS, gin.H{})
+		common.RES(c, e.SUCCESS, gin.H{
+			"message": "删除成功",
+		})
+	}
+}
+
+//列表role数据
+func RoleList(c *gin.Context) {
+	var roles Role
+	result, err := roles.RoleList()
+	if err != nil {
+		common.RES(c, e.ERROR, gin.H{
+			"message": err.Error(),
+		})
+		return
+	} else {
+		common.RES(c, e.ERROR, gin.H{
+			"data": result,
+		})
 	}
 }
 
@@ -159,5 +177,41 @@ func AddRole(c *gin.Context) {
 		common.RES(c, e.ERROR, gin.H{
 			"message": "role名已存在！",
 		})
+	}
+}
+
+//删除role数据
+func DeleteRoleByID(c *gin.Context) {
+	var role Role
+	id, err := strconv.ParseUint(c.Param("id"), 10, 32)
+	if id == 0 {
+		common.RES(c, e.INVALID_PARAMS, gin.H{
+			"message": "id必须大于0",
+		})
+	}
+	_, err = role.RoleDestroy(uint(id))
+	if err != nil {
+		common.RES(c, e.ERROR, gin.H{
+			"message": err.Error(),
+		})
+	} else {
+		common.RES(c, e.SUCCESS, gin.H{
+			"message": "删除成功",
+		})
+	}
+}
+
+//修改role数据
+func UpdateRoleByID(c *gin.Context) {
+	var role Role
+	id, err := strconv.ParseUint(c.Param("id"), 10, 32)
+	role.Rolename = c.Request.FormValue("rolename")
+	_, err = role.RoleUpdate(uint(id))
+	if err != nil {
+		common.RES(c, e.ERROR, gin.H{
+			"message": err.Error(),
+		})
+	} else {
+		common.RES(c, e.SUCCESS, gin.H{})
 	}
 }
