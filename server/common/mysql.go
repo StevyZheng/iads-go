@@ -19,6 +19,8 @@ func NewConnection() (conn *Connection) {
 	if Eloquent.Error != nil {
 		fmt.Printf("common error %v", Eloquent.Error)
 	}
+	Eloquent.DB().SetMaxIdleConns(10)
+	Eloquent.DB().SetMaxOpenConns(100)
 	conn = &Connection{Eloquent}
 	return
 }

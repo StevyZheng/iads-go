@@ -36,6 +36,8 @@ github.com/buger/jsonparser v0.0.0-20181115193947-bf1c66bbce23 h1:D21IyuvjDCshj1
 github.com/buger/jsonparser v0.0.0-20181115193947-bf1c66bbce23/go.mod h1:bbYlZJ7hK1yFx9hf58LP0zeX7UjIGs20ufpu3evjr+s=
 github.com/casbin/casbin v1.8.2 h1:hJrnZxIXnsxyxQ8zvrUWYrR+MJK+J1X7sBeA5DuLh+o=
 github.com/casbin/casbin v1.8.2/go.mod h1:z8uPsfBJGUsnkagrt3G8QvjgTKFMBJ32UP8HpZllfog=
+github.com/casbin/gorm-adapter v0.0.0-20190318080705-e74a050c51a4 h1:7k27RXBL/0c7vJhLbelMPk+yNN+ceYX1WUlzlKDaIME=
+github.com/casbin/gorm-adapter v0.0.0-20190318080705-e74a050c51a4/go.mod h1:1E0t3/djAo+vIvDfNPGigJjLMyoh2XNesXMW69R3ykA=
 github.com/chfenger/goNum v0.0.0-20190530013633-17a6c6a4dae0 h1:13zed0OMhloYwH2PYGX9Rl6nWPBbIxWq3Vxq9Ld+egs=
 github.com/chfenger/goNum v0.0.0-20190530013633-17a6c6a4dae0/go.mod h1:bquY2/umuyWXh59fKDMFlbPf/jdR31Md1PZXbgde9EM=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=

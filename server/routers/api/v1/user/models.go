@@ -14,7 +14,7 @@ func Init() {
 //用户类
 type User struct {
 	gorm.Model
-	Username string `json:"username" form:"username" validate:"required"`
+	Username string `json:"username" form:"username" validate:"required" gorm:"unique"`
 	Password string `json:"password" form:"password" validate:"required"`
 	Email    string `json:"email"`
 	Gender   string `json:"gender"`
@@ -25,12 +25,12 @@ type User struct {
 
 type Role struct {
 	gorm.Model
-	Rolename string `json:"rolename"`
+	Rolename string `json:"rolename" gorm:"unique"`
 }
 
 type Permissions struct {
 	gorm.Model
-	PermissionsEntry string `json:"permissions_entry"`
+	PermissionsEntry string `json:"permissions_entry" gorm:"unique"`
 }
 
 func CreateTable() {

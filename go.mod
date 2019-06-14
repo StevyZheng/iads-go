@@ -9,6 +9,7 @@ require (
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
 	github.com/appleboy/gin-jwt v2.6.0+incompatible
 	github.com/casbin/casbin v1.8.2
+	github.com/casbin/gorm-adapter v0.0.0-20190318080705-e74a050c51a4
 	github.com/chfenger/goNum v0.0.0-20190530013633-17a6c6a4dae0
 	github.com/denisenkom/go-mssqldb v0.0.0-20190515213511-eb9f6a1743f3 // indirect
 	github.com/docker/distribution v2.7.1+incompatible // indirect
