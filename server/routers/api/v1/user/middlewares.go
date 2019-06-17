@@ -27,7 +27,7 @@ func init() {
 		IdentityKey: identityKey,
 		// 登录时调用，可将载荷添加到token中
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
-			fmt.Println("调用：PayloadFunc")
+			//fmt.Println("调用：PayloadFunc")
 			if v, ok := data.(*User); ok {
 				return jwt.MapClaims{
 					identityKey: v.Username,
@@ -50,7 +50,7 @@ func init() {
 		// 验证登录
 		Authenticator: func(c *gin.Context) (interface{}, error) {
 			loginval := &login{}
-			if err := c.ShouldBind(&loginval); err != nil {
+			if err := c.ShouldBindJSON(&loginval); err != nil {
 				return "", err
 			}
 			user, msg, result := loginval.validator()

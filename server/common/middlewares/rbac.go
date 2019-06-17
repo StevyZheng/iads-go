@@ -1,9 +1,9 @@
 package middlewares
 
 import (
-	"fmt"
 	"github.com/casbin/casbin"
 	"github.com/casbin/gorm-adapter"
+	"github.com/gin-contrib/authz"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,6 +16,7 @@ func RbacInitReturnEnforcer() *casbin.Enforcer {
 }
 
 //拦截器
+/*
 func RbacHandler(e *casbin.Enforcer) gin.HandlerFunc {
 
 	return func(c *gin.Context) {
@@ -35,5 +36,11 @@ func RbacHandler(e *casbin.Enforcer) gin.HandlerFunc {
 			fmt.Println("权限没有通过")
 			c.Abort()
 		}
+	}
+}*/
+
+func RbacHandler(e *casbin.Enforcer) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		authz.NewAuthorizer(e)
 	}
 }

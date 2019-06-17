@@ -8,7 +8,6 @@ import (
 
 func InitRouter() *gin.Engine {
 	router := gin.Default()
-	//router.Use(middlewares.NewAuthorizer(e))
 	rbac := middlewares.RbacInitReturnEnforcer()
 	router.Use(middlewares.RbacHandler(rbac))
 	api := router.Group("/api")
