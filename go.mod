@@ -19,9 +19,9 @@ require (
 	github.com/dselans/dmidecode v0.0.0-20180814053009-65c3f9d81910
 	github.com/dsnet/compress v0.0.1 // indirect
 	github.com/emirpasic/gods v1.12.0
-	github.com/gin-contrib/authz v0.0.0-20190528083835-749041bdf7e2
 	github.com/gin-contrib/sessions v0.0.0-20190512062852-3cb4c4f2d615
 	github.com/gin-contrib/sse v0.1.0 // indirect
+	github.com/gin-gonic/contrib v0.0.0-20190526021735-7fb7810ed2a0
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-ole/go-ole v1.2.4 // indirect
 	github.com/go-openapi/spec v0.19.0 // indirect

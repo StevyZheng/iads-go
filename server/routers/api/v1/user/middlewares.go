@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	jwt "github.com/appleboy/gin-jwt"
-	_ "github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
@@ -19,6 +19,7 @@ var (
 
 func init() {
 	// the jwt middleware
+	fmt.Println("init jwt.[user/middlewares.go:line 22]")
 	Auth, err = jwt.New(&jwt.GinJWTMiddleware{
 		Realm:       "test zone",
 		Key:         []byte("secret key"),
@@ -56,24 +57,21 @@ func init() {
 			user, msg, result := loginval.validator()
 
 			if result {
-				return user, nil
-				/*
-					session := sessions.Default(c)
-					session.Set("role", user.Role)
-					_ = session.Save()
-					return &user, nil
-				*/
+				//return user, nil
+				session := sessions.Default(c)
+				fmt.Println("session set role:", user.Role)
+				session.Set("role", user.Role)
+				_ = session.Save()
+				return &user, nil
 			}
 
 			return nil, errors.New(msg)
 		},
 		// 鉴权成功后执行
 		Authorizator: func(data interface{}, c *gin.Context) bool {
-			/*
-				session := sessions.Default(c)
-				session.Set("userInfo", data)
-				_ = session.Save()
-			*/
+			session := sessions.Default(c)
+			session.Set("userInfo", data)
+			_ = session.Save()
 			return true
 		},
 		// 登录成功的回调函数

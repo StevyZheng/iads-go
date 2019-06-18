@@ -1,6 +1,7 @@
 package user
 
 import (
+	"fmt"
 	"github.com/jinzhu/gorm"
 	orm "iads/server/common"
 )
@@ -46,7 +47,8 @@ type login struct {
 // Validator .
 func (login *login) validator() (*User, string, bool) {
 	user := &User{Username: login.Username}
-	err := dbConnect.Eloquent.First(&user).Error
+	err := dbConnect.Eloquent.Where("username = ?", login.Username).First(&user).Error
+	fmt.Println(user)
 	var msg string
 	if err != nil {
 		msg = "没有该账户！"

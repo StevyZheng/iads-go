@@ -1,9 +1,11 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Stevy">
     <words>
+      <w>casbin</w>
       <w>cpuinfo</w>
       <w>iads</w>
       <w>rabc</w>
+      <w>rbac</w>
       <w>rolename</w>
       <w>roycom</w>
     </words>
