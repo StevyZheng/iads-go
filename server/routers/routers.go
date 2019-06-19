@@ -11,8 +11,8 @@ import (
 func InitRouter() *gin.Engine {
 	router := gin.Default()
 	store := cookie.NewStore([]byte("secret"))
+	router.Use(sessions.Sessions("mysession", store))
 	rbac := middlewares.RbacInitReturnEnforcer()
-	router.Use(sessions.Sessions("default", store))
 	router.Use(middlewares.NewAuthorizer(rbac))
 	api := router.Group("/api")
 	{

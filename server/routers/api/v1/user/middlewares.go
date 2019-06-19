@@ -2,9 +2,10 @@ package user
 
 import (
 	"errors"
-	"fmt"
+	. "fmt"
 	jwt "github.com/appleboy/gin-jwt"
 	"github.com/gin-contrib/sessions"
+	//"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
@@ -19,7 +20,7 @@ var (
 
 func init() {
 	// the jwt middleware
-	fmt.Println("init jwt.[user/middlewares.go:line 22]")
+	Println("init jwt.[user/middlewares.go:line 22]")
 	Auth, err = jwt.New(&jwt.GinJWTMiddleware{
 		Realm:       "test zone",
 		Key:         []byte("secret key"),
@@ -28,7 +29,7 @@ func init() {
 		IdentityKey: identityKey,
 		// 登录时调用，可将载荷添加到token中
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
-			//fmt.Println("调用：PayloadFunc")
+			Println("调用：PayloadFunc")
 			if v, ok := data.(*User); ok {
 				return jwt.MapClaims{
 					identityKey: v.Username,
@@ -40,12 +41,12 @@ func init() {
 		},
 		// 验证登录状态
 		IdentityHandler: func(c *gin.Context) interface{} {
-			//fmt.Println("调用：IdentityHandler")
+			Println("调用：IdentityHandler")
 			claims := jwt.ExtractClaims(c)
 			// return &User{
 			// 	Username: claims["id"].(string),
 			// }
-			fmt.Println(claims[identityKey])
+			Println(claims[identityKey])
 			return claims[identityKey]
 		},
 		// 验证登录
@@ -59,7 +60,7 @@ func init() {
 			if result {
 				//return user, nil
 				session := sessions.Default(c)
-				fmt.Println("session set role:", user.Role)
+				Println("session set role:", user.Role)
 				session.Set("role", user.Role)
 				_ = session.Save()
 				return &user, nil

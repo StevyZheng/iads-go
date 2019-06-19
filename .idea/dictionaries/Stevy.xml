@@ -4,6 +4,7 @@
       <w>casbin</w>
       <w>cpuinfo</w>
       <w>iads</w>
+      <w>mysession</w>
       <w>rabc</w>
       <w>rbac</w>
       <w>rolename</w>

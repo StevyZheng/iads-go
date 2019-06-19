@@ -47,7 +47,9 @@ type BasicAuthorizer struct {
 // GetRoleName gets the user name from the request.
 // Currently, only HTTP basic authentication is supported
 func (a *BasicAuthorizer) GetRoleName(c *gin.Context) interface{} {
+	fmt.Println("GetRoleName")
 	session := sessions.Default(c)
+	fmt.Println(session)
 	role := session.Get("role")
 	if role != nil && role != "" {
 		fmt.Println("session role --->", role)
@@ -60,6 +62,7 @@ func (a *BasicAuthorizer) GetRoleName(c *gin.Context) interface{} {
 // CheckPermission checks the user/method/path combination from the request.
 // Returns true (permission granted) or false (permission forbidden)
 func (a *BasicAuthorizer) CheckPermission(c *gin.Context) bool {
+	fmt.Println("CheckPermission")
 	role := a.GetRoleName(c)
 	method := c.Request.Method
 	path := c.Request.URL.Path
