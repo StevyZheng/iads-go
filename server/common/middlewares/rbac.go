@@ -51,6 +51,7 @@ func (a *BasicAuthorizer) GetRoleName(c *gin.Context) interface{} {
 	session := sessions.Default(c)
 	fmt.Println(session)
 	role := session.Get("role")
+	fmt.Println(role)
 	if role != nil && role != "" {
 		fmt.Println("session role --->", role)
 		return role

@@ -1,4 +1,4 @@
-package user
+package middlewares
 
 import (
 	"errors"
@@ -7,6 +7,7 @@ import (
 	"github.com/gin-contrib/sessions"
 	//"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"iads/server/routers/api/v1/user"
 	"net/http"
 	"time"
 )
@@ -20,7 +21,6 @@ var (
 
 func init() {
 	// the jwt middleware
-	Println("init jwt.[user/jwt.go:line 22]")
 	Auth, err = jwt.New(&jwt.GinJWTMiddleware{
 		Realm:       "test zone",
 		Key:         []byte("secret key"),
@@ -30,7 +30,7 @@ func init() {
 		// 登录时调用，可将载荷添加到token中
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
 			Println("调用：PayloadFunc")
-			if v, ok := data.(*User); ok {
+			if v, ok := data.(*user.User); ok {
 				return jwt.MapClaims{
 					identityKey: v.Username,
 				}
@@ -51,7 +51,8 @@ func init() {
 		},
 		// 验证登录
 		Authenticator: func(c *gin.Context) (interface{}, error) {
-			loginval := &Login{}
+			Println("调用：Authenticator")
+			loginval := &user.Login{}
 			if err := c.ShouldBindJSON(&loginval); err != nil {
 				return "", err
 			}
@@ -60,8 +61,8 @@ func init() {
 			if result {
 				//return user, nil
 				session := sessions.Default(c)
-				Println("session set role:", user.Role)
-				session.Set("role", user.Role)
+				Println("session set role:", user.Role.Rolename)
+				session.Set("role", user.Role.Rolename)
 				_ = session.Save()
 				return &user, nil
 			}
@@ -81,7 +82,7 @@ func init() {
 				"code":    http.StatusOK,
 				"token":   token,
 				"expire":  expire.Format(time.RFC3339),
-				"message": "Login success!",
+				"message": "login success!",
 			})
 		},
 		// 登录失效时的回调函数

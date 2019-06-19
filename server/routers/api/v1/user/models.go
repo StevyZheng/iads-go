@@ -39,13 +39,13 @@ func CreateTable() {
 	dbConnect.Eloquent.Model(&User{}).AddForeignKey("role_id", "roles(id)", "no action", "no action")
 }
 
-type login struct {
+type Login struct {
 	Username string `form:"username" validate:"required"`
 	Password string `form:"password" validate:"required"`
 }
 
 // Validator .
-func (login *login) validator() (*User, string, bool) {
+func (login *Login) Validator() (*User, string, bool) {
 	user := &User{Username: login.Username}
 	err := dbConnect.Eloquent.Where("username = ?", login.Username).First(&user).Error
 	fmt.Println(user)

@@ -10,7 +10,7 @@ func RegisterUserRouter(r *gin.RouterGroup) {
 	// 注册
 	r.POST("/register", register)
 	// 登录
-	r.POST("/login", Auth.LoginHandler)
+	//r.POST("/Login", Auth.LoginHandler)
 
 	auth := r.Group("")
 	auth.Use(Auth.MiddlewareFunc())
